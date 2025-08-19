@@ -19,6 +19,12 @@ public class Homework01Application {
     public String getIndexAPI() {
         return "This is the main page!";
     }
+
+    @GetMapping("/contact")
+    public String getContactAPI() {
+        return "This is the contact page!";
+    }
+    
     
 
     @GetMapping("/hello")
