@@ -5,6 +5,17 @@
 This is a Spring Boot project. To start it, run:
 
 ```bash
+JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home ./mvnw spring-boot:run
+```
+
+Or as multiline command:
+```bash
+JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home \
+./mvnw spring-boot:run
+```
+
+Alternative (may not work without JAVA_HOME):
+```bash
 ./mvnw spring-boot:run
 ```
 
