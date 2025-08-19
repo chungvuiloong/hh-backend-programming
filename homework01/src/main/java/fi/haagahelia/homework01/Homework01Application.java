@@ -28,8 +28,11 @@ public class Homework01Application {
     
 
     @GetMapping("/hello")
-    public String getHelloAPI() {
-        return "Hello, World!";
+    public String getHelloAPI(
+        @RequestParam(name = "location", required = false, defaultValue = "World") String location,
+        @RequestParam(name = "name", required = false, defaultValue = "") String name
+        ) {
+        return "Welcome to the " + location + " " + name + "!";
     }
 
 }
