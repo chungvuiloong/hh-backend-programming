@@ -3,6 +3,7 @@ package homework02.homework02;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,10 +24,13 @@ public class Homework02Application {
 
         @GetMapping("/hello")
         public String getHelloAPI(
-            @RequestParam(name = "name", required = false, defaultValue = "") String name,
-            @RequestParam(name = "age", required = false, defaultValue = "0") int age
+            @RequestParam(name = "name", required = false, defaultValue = "World") String name,
+            @RequestParam(name = "age", required = false, defaultValue = "0") int age,
+            Model model
         ) {
-            return "Welcome to the " + name + " " + age + "!";
+            model.addAttribute("name", name);
+            model.addAttribute("age", age);
+            return "hello";
         }
     }
 }
