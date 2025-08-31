@@ -18,8 +18,8 @@
         <div>
             <h3>Welcome to the Haaga-Helia!</h3>
             <div th:each="student : ${students}">
-                <div th:text="${student.firstName}"></div>
-                <div th:text="${student.lastName}"></div>
+                <span th:text="${student.firstName}"></span>
+                <span th:text="${student.lastName}"></span>
             </div>
         </div>
     </main>
