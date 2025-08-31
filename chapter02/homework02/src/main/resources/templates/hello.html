@@ -9,16 +9,12 @@
 <body>
     <header>
         <nav>
-            <h1>Thymeleaf Assignment: Hello Thymeleaf</h1>
+            <h1>Chapter 02: Hello Thymeleaf</h1>
             <!-- Assignment : Create
 thymeleaf template which shows welcome message if age is greater than 18.  -->
             <h2>1. Hello Thymeleaf</h2>
             <p th:if="${age &gt;= 18 }" th:text="'Hello, ' + ${name} + '!'"></p>
             <p th:if="${age &lt; 18}" th:text="'You are too young!'"></p>
-
-
-            <h2>2. Handling Lists</h2>
-            <p>Welcome to the Haaga-Helia!</p>
         </nav>
     </header>
 
