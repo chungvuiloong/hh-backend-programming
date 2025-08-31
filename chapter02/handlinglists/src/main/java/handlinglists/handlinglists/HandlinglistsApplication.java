@@ -12,14 +12,14 @@ public class HandlinglistsApplication {
 		SpringApplication.run(HandlinglistsApplication.class, args);
 	}
 
-    @Controller
-    public class MyController {
+    // @Controller
+    // public class MyController {
 
 
-        @GetMapping("/hello")
-        public String getHelloAPI() {
-            return "Welcome to the Haaga-Helia!";
-        }
-    }
+    //     @GetMapping("/hello")
+    //     public String getHelloAPI() {
+    //         return "Welcome to the Haaga-Helia!";
+    //     }
+    // }
 
 }
