@@ -25,7 +25,7 @@ public class Homework02Application {
         @GetMapping("/hello")
         public String getHelloAPI(
             @RequestParam(name = "name", required = false, defaultValue = "World") String name,
-            @RequestParam(name = "age", required = false, defaultValue = "0") int age,
+            @RequestParam(name = "age", required = false, defaultValue = "18") int age,
             Model model
         ) {
             model.addAttribute("name", name);
