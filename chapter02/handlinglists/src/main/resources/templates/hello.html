@@ -15,7 +15,13 @@
     </header>
 
     <main>
-
+        <div>
+            <h3>Welcome to the Haaga-Helia!</h3>
+            <div th:each="student : ${students}">
+                <div th:text="${student.firstName}"></div>
+                <div th:text="${student.lastName}"></div>
+            </div>
+        </div>
     </main>
 
     <footer>

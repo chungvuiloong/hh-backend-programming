@@ -11,11 +11,9 @@ public class StudentController {
     @GetMapping("/hello")
     public String hello(Model model) {
         List<Student> students = new ArrayList<>();
-        students.add(new Student("John", "Doe"));
-        students.add(new Student("Jane", "Smith"));
-        students.add(new Student("Bob", "Johnson"));
-        students.add(new Student("Alice", "Brown"));
-        
+        students.add(new Student("Kate", "Cole"));
+        students.add(new Student("Dan", "Brown"));
+        students.add(new Student("Mike", "Mars"));
         model.addAttribute("students", students);
         
         return "hello";
