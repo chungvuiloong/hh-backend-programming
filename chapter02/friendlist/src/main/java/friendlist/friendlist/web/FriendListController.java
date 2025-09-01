@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import friendlist.friendlist.domain.Friend;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class FriendListController {
@@ -22,6 +25,14 @@ public class FriendListController {
     @GetMapping("/")
     public String getFriends(Model model) {
         model.addAttribute("friends", friends);
+        model.addAttribute("friend", new Friend());
         return "friendsList";
     }
+
+    @PostMapping("/add")
+    public String addFriend(@ModelAttribute Friend friend) {
+        friends.add(friend);
+        return "redirect:/";
+    }
+    
 }
