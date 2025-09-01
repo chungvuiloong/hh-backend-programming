@@ -12,12 +12,12 @@ public class FriendlistApplication {
 		SpringApplication.run(FriendlistApplication.class, args);
 	}
 
-    @Controller
-    public class FriendlistController {
-        @GetMapping("/")
-        public String getFriends() {
-            return "friendsList";
-        }
-    }
+    // @Controller
+    // public class FriendlistController {
+    //     @GetMapping("/")
+    //     public String getFriends() {
+    //         return "friendsList";
+    //     }
+    // }
 
 }
