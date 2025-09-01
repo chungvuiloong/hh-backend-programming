@@ -8,3 +8,6 @@ Src: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter02
 In this assignment, it is found in handlinglists folder.
 Src: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter02/handlinglists
 
+## 3.
+In this assignment, it is found in friendlist folder.
+Src: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter02/friendlist
