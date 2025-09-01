@@ -32,3 +32,5 @@ java -jar target/friendlist-0.0.1-SNAPSHOT.jar
 ### Development
 
 The application includes Spring Boot DevTools for hot reload during development.
+
+   export JAVA_HOME=$(/usr/libexec/java_home -v 17) && ./mvnw spring-boot:run
