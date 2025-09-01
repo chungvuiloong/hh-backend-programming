@@ -6,10 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
-public class FriendlistApplication {
+public class FriendListApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FriendlistApplication.class, args);
+		SpringApplication.run(FriendListApplication.class, args);
 	}
 
     // @Controller
