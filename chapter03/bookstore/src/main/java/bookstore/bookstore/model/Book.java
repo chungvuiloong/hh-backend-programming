@@ -1,10 +1,16 @@
 package bookstore.bookstore.model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Book {
-    String title;
-    String author;
-    int publicationYear;
-    String isbn;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String author;
+    private int publicationYear;
+    private String isbn;
     double price;
 
     public Book(String title, String author, int publicationYear, String isbn, double price) {
