@@ -24,6 +24,14 @@
                     <td th:text="${book.isbn}">Book ISBN</td>
                     <td th:text="${book.price}">Book Price</td>
             </table>
+            <form action="#" th:action="@{/book}" th:object="${book}" method="post">
+                <p>Book title: <input type="text" th:field="*{title}" /></p>
+                <p>Author: <input type="text" th:field="*{author}" /></p>
+                <p>Publication Year: <input type="text" th:field="*{publicationYear}" /></p>
+                <p>ISBN: <input type="text" th:field="*{isbn}" /></p>
+                <p>Price: <input type="text" th:field="*{price}" /></p>
+                <p><input type="submit" value="Submit" /></p>
+            </form>
             <ul>
                 <!-- <li th:each="book : ${books}">
                     <span th:text="${book.title} + ' ' + ${book.author} + ' ' + ${book.publicationYear} + ' ' + ${book.isbn} + ' ' + ${book.price}"></span> -->
