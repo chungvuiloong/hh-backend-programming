@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import bookstore.bookstore.model.Book;
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 
 @Controller
 public class BookController {
@@ -27,7 +27,7 @@ public class BookController {
     @GetMapping("/")
     public String getBooks(Model model) {
         model.addAttribute("books", books);
-        model.addAttribute("book", new Book());
+        model.addAttribute("books", new Book());
         return "index";
     }
 
