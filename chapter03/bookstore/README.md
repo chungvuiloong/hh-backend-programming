@@ -29,6 +29,15 @@ The application will start on http://localhost:8080
 java -jar target/friendlist-0.0.1-SNAPSHOT.jar
 ```
 
+### List and Kill other 
+```bash
+lsof -ti:8080
+```
+
+```bash
+kill -9 <PID>
+```
+
 ### Development
 
 The application includes Spring Boot DevTools for hot reload during development.
