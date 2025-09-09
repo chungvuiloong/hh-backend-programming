@@ -30,7 +30,7 @@
                     <td th:text="${book.isbn}">Book ISBN</td>
                     <td th:text="${book.price}">Book Price</td>
                     <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${book.id})}" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</a></td>
                 </tr>
             </table>
             <a th:href="@{/addbook}" class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Add New Book</a>
