@@ -1,6 +1,7 @@
 # Bookstore Application
+Source: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter03/bookstore
+Spring Boot web application for managing a bookstore.
 
-Spring Boot web application for managing a friend list.
 
 ## Getting Started
 
