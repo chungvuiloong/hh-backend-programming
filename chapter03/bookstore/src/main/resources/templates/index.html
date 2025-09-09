@@ -10,28 +10,33 @@
     <body class="mx-auto container p-4">
         <h1 class="text-6xl">Welcome to the Bookstore</h1>
         <div>
-            <table>
+            <table class="my-12 h-full max-w-[900px]  w-full">
                 <caption>Available Books</caption>
-                <tr>
+                <thead class="py-10 bg-gray-300">                
+                    <tr>
                     <!-- <th scope="col">ID</th> -->
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Publication Year</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Price</th>
+                    <th scope="col" colspan="2">Actions</th>
+
                     <!-- <th scope="col">Edit</th>
                     <th scope="col">Delete</th> -->
-                </tr>
-                <tr th:each="book : ${books}">
-                    <!-- <td th:text="${book.id}">Book ID</td> -->
-                    <td th:text="${book.title}">Book Title</td>
-                    <td th:text="${book.author}">Book Author</td>
-                    <td th:text="${book.publicationYear}">Book Publication Year</td>
-                    <td th:text="${book.isbn}">Book ISBN</td>
-                    <td th:text="${book.price}">Book Price</td>
-                    <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
-                    <td><a th:href="@{/delete/{id}(id=${book.id})}" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</a></td>
-                </tr>
+                </tr></thead>
+                <tbody class="py-10 text-center">
+                    <tr th:each="book, iterStat : ${books}" class="odd:bg-white even:bg-gray-200">
+                        <!-- <td th:text="${book.id}">Book ID</td> -->
+                        <td th:text="${book.title}">Book Title</td>
+                        <td th:text="${book.author}">Book Author</td>
+                        <td th:text="${book.publicationYear}">Book Publication Year</td>
+                        <td th:text="${book.isbn}">Book ISBN</td>
+                        <td th:text="${book.price}">Book Price</td>
+                        <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${book.id})}" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</a></td>
+                    </tr>
+                </tbody>
             </table>
             <a th:href="@{/addbook}" class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Add New Book</a>
             <!-- <form action="#" th:action="@{/book}" th:object="${book}" method="post">
