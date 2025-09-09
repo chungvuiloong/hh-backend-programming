@@ -23,6 +23,9 @@
                     <td th:text="${book.publicationYear}">Book Publication Year</td>
                     <td th:text="${book.isbn}">Book ISBN</td>
                     <td th:text="${book.price}">Book Price</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Delete</button></td>
+                </tr>
             </table>
             <form action="#" th:action="@{/book}" th:object="${book}" method="post">
                 <p>Book title: <input type="text" th:field="*{title}" /></p>
