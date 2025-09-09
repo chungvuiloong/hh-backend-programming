@@ -5,6 +5,7 @@
         <title>Server Programming</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet" th:href="@{/styles.css}">
     </head>
     <body class="mx-auto container p-4">
         <h1 class="text-6xl">Welcome to the Bookstore</h1>
@@ -32,7 +33,7 @@
                     <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
                 </tr>
             </table>
-            <a th:href="@{/addbook}">Add New Book</a>
+            <a th:href="@{/addbook}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add New Book</a>
             <!-- <form action="#" th:action="@{/book}" th:object="${book}" method="post">
                 <p>Book title: <input type="text" th:field="*{title}" /></p>
                 <p>Author: <input type="text" th:field="*{author}" /></p>

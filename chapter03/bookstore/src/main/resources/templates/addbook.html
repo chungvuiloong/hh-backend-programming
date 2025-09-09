@@ -5,6 +5,7 @@
         <title>Save Book</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet" th:href="@{/styles.css}">
     </head>
     <body>
         <h1>Save Book</h1>
@@ -15,7 +16,7 @@
                 <p>Publication Year: <input type="text" th:field="*{publicationYear}" /></p>
                 <p>ISBN: <input type="text" th:field="*{isbn}" /></p>
                 <p>Price: <input type="text" th:field="*{price}" /></p>
-                <p><input type="submit" value="Submit" /></p>
+                <p><input type="submit" value="Add New Book" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"/></p>
             </form>
         </div>
     </body>
