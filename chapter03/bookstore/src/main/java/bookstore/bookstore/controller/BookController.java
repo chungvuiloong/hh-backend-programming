@@ -19,6 +19,7 @@ public class BookController {
             new Book("Jukka", "Juslin", 2021, "1234567890125", 39.99)
         )
     );
+
     @RequestMapping("/index")
     public String getIndex() {
         return "index";
@@ -27,7 +28,7 @@ public class BookController {
     @GetMapping("/")
     public String getBooks(Model model) {
         model.addAttribute("books", books);
-        model.addAttribute("books", new Book());
+        model.addAttribute("book", new Book());
         return "index";
     }
 
