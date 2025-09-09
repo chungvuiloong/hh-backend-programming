@@ -30,7 +30,13 @@ public class BookController {
         return "index";
     }
 
-    @PostMapping("/book")
+    @GetMapping("/addbook")
+    public String addBookForm(Model model) {
+        model.addAttribute("book", new Book());
+        return "addbook";
+    }
+
+    @PostMapping({"/", "/addbook"})
     public String addBook(Book book) {
         repository.save(book);
         return "redirect:/";

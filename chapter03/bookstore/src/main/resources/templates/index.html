@@ -31,14 +31,15 @@
                     <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
                 </tr>
             </table>
-            <form action="#" th:action="@{/book}" th:object="${book}" method="post">
+            <a th:href="@{/addbook}">Add New Book</a>
+            <!-- <form action="#" th:action="@{/book}" th:object="${book}" method="post">
                 <p>Book title: <input type="text" th:field="*{title}" /></p>
                 <p>Author: <input type="text" th:field="*{author}" /></p>
                 <p>Publication Year: <input type="text" th:field="*{publicationYear}" /></p>
                 <p>ISBN: <input type="text" th:field="*{isbn}" /></p>
                 <p>Price: <input type="text" th:field="*{price}" /></p>
                 <p><input type="submit" value="Submit" /></p>
-            </form>
+            </form> -->
             <ul>
                 <!-- <li th:each="book : ${books}">
                     <span th:text="${book.title} + ' ' + ${book.author} + ' ' + ${book.publicationYear} + ' ' + ${book.isbn} + ' ' + ${book.price}"></span> -->
