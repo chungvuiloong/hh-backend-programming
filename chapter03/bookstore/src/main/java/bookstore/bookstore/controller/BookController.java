@@ -17,9 +17,9 @@ public class BookController {
     public BookController(BookRepository repository) {
         this.repository = repository;
         if (repository.count() == 0) {
-            repository.save(new Book("Minna", "Pellikka", 2020, "1234567890123", 29.99));
-            repository.save(new Book("Tanja", "Bergius", 2019, "1234567890124", 19.99));
-            repository.save(new Book("Jukka", "Juslin", 2021, "1234567890125", 39.99));
+            repository.save(new Book("Minna's Journey", "Minna Pellikka", 2020, "1234567890123", 29.99));
+            repository.save(new Book("Tanja's Adventure", "Tanja Bergius", 2019, "1234567890124", 19.99));
+            repository.save(new Book("Jukka's Quest", "Jukka Juslin", 2021, "1234567890125", 39.99));
         }
     }
 
