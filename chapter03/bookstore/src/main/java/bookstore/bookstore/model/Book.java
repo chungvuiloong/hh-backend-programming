@@ -45,4 +45,20 @@ public class Book {
     public double getPrice() {
         return price;
     }
+
+    public String setTitle (String title) {
+        return this.title = title;
+    }
+    public String setAuthor (String author) {
+        return this.author = author;
+    }
+    public int setPublicationYear (int publicationYear) {
+        return this.publicationYear = publicationYear;
+    }
+    public String setIsbn (String isbn) {
+        return this.isbn = isbn;
+    }
+    public double setPrice (double price) {
+        return this.price = price;
+    }
 }
