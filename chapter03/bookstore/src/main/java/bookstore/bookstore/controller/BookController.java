@@ -1,11 +1,8 @@
 package bookstore.bookstore.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import bookstore.bookstore.model.Book;
 import bookstore.bookstore.repository.BookRepository;
@@ -32,10 +29,10 @@ public class BookController {
         return "index";
     }
 
-    // @RequestMapping(value= {"/", "/booklist"})
-    // public String bookList(Model model) {
-    //     model.addAttribute("books", repository.findAll());
-    //     return "booklist";
-    // }
+    @PostMapping("/book")
+    public String addBook(Book book) {
+        repository.save(book);
+        return "redirect:/";
+    }
 
 }
