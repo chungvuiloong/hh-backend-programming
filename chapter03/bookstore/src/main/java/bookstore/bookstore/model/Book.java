@@ -50,6 +50,10 @@ public class Book {
         return price;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String setTitle (String title) {
         return this.title = title;
     }
