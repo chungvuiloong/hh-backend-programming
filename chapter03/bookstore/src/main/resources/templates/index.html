@@ -11,20 +11,24 @@
             <table>
                 <caption>Available Books</caption>
                 <tr>
+                    <!-- <th scope="col">ID</th> -->
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
                     <th scope="col">Publication Year</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
                 <tr th:each="book : ${books}">
+                    <!-- <td th:text="${book.id}">Book ID</td> -->
                     <td th:text="${book.title}">Book Title</td>
                     <td th:text="${book.author}">Book Author</td>
                     <td th:text="${book.publicationYear}">Book Publication Year</td>
                     <td th:text="${book.isbn}">Book ISBN</td>
                     <td th:text="${book.price}">Book Price</td>
                     <td><button>Edit</button></td>
-                    <td><button>Delete</button></td>
+                    <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
                 </tr>
             </table>
             <form action="#" th:action="@{/book}" th:object="${book}" method="post">

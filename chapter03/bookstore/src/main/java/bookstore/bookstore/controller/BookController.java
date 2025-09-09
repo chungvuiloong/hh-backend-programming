@@ -2,6 +2,7 @@ package bookstore.bookstore.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import bookstore.bookstore.model.Book;
@@ -35,8 +36,8 @@ public class BookController {
         return "redirect:/";
     }
 
-    @PostMapping("/delete")
-    public String deleteBook(Long id) {
+    @GetMapping("/delete/{id}")
+    public String deleteBook(@PathVariable Long id) {
         repository.deleteById(id);
         return "redirect:/";
     }
