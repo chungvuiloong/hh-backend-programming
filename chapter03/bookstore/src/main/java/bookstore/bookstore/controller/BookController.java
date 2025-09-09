@@ -8,28 +8,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import bookstore.bookstore.model.Book;
+import bookstore.bookstore.repository.BookRepository;
 import org.springframework.ui.Model;
 
 @Controller
 public class BookController {
-    List<Book> books = new ArrayList<>(
-        List.of(
-            new Book("Minna", "Pellikka", 2020, "1234567890123", 29.99),
-            new Book("Tanja", "Bergius", 2019, "1234567890124", 19.99),
-            new Book("Jukka", "Juslin", 2021, "1234567890125", 39.99)
-        )
-    );
 
-    @RequestMapping("/index")
-    public String getIndex() {
-        return "index";
+    private BookRepository repository;
+    
+    public BookController(BookRepository repository) {
+        this.repository = repository;
+        if (repository.count() == 0) {
+            repository.save(new Book("Minna", "Pellikka", 2020, "1234567890123", 29.99));
+            repository.save(new Book("Tanja", "Bergius", 2019, "1234567890124", 19.99));
+            repository.save(new Book("Jukka", "Juslin", 2021, "1234567890125", 39.99));
+        }
     }
 
     @GetMapping("/")
     public String getBooks(Model model) {
-        model.addAttribute("books", books);
+        model.addAttribute("books", repository.findAll());
         model.addAttribute("book", new Book());
         return "index";
     }
+
+    // @RequestMapping(value= {"/", "/booklist"})
+    // public String bookList(Model model) {
+    //     model.addAttribute("books", repository.findAll());
+    //     return "booklist";
+    // }
 
 }
