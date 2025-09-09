@@ -35,4 +35,9 @@ public class BookController {
         return "redirect:/";
     }
 
+    @PostMapping("/delete")
+    public String deleteBook(Long id) {
+        repository.deleteById(id);
+        return "redirect:/";
+    }
 }
