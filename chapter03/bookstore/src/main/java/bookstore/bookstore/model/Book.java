@@ -22,4 +22,24 @@ public class Book {
         this.isbn = isbn;
         this.price = price;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
