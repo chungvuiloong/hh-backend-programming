@@ -1,5 +1,5 @@
 # Bookstore Application
-Source: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter03/bookstore
+Source: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter04/bookstore
 Spring Boot web application for managing a bookstore.
 
 
@@ -18,7 +18,7 @@ Spring Boot web application for managing a bookstore.
 
 2. Start the application:
    ```bash
-   ./mvnw spring-boot:run
+   export JAVA_HOME=$(/usr/libexec/java_home -v 17) && ./mvnw spring-boot:run
    ```
 
 The application will start on http://localhost:8080
