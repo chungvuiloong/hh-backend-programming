@@ -1,14 +1,14 @@
 package bookstore.bookstore.model;
 import java.util.List;
-
-import javax.security.auth.Subject;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Book {
@@ -23,6 +23,13 @@ public class Book {
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Category> categories;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @Transient
+    private List<String> categoryNames;
 
     public Book() {
     }
@@ -77,5 +84,29 @@ public class Book {
     }
     public double setPrice (double price) {
         return this.price = price;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<String> getCategoryNames() {
+        return categoryNames;
+    }
+
+    public void setCategoryNames(List<String> categoryNames) {
+        this.categoryNames = categoryNames;
     }
 }
