@@ -20,6 +20,7 @@
                     <th scope="col">Publication Year</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Categories</th>
                     <th scope="col" colspan="2">Actions</th>
 
                     <!-- <th scope="col">Edit</th>
@@ -33,6 +34,12 @@
                         <td th:text="${book.publicationYear}">Book Publication Year</td>
                         <td th:text="${book.isbn}">Book ISBN</td>
                         <td th:text="${book.price}">Book Price</td>
+                        <td>
+                            <span th:each="category, iterStat : ${book.categories}">
+                                <span th:text="${category.name}"></span>
+                                <span th:if="${!iterStat.last}">, </span>
+                            </span>
+                        </td>
                         <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
                         <td><a th:href="@{/delete/{id}(id=${book.id})}" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</a></td>
                     </tr>
