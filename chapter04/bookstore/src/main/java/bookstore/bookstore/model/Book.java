@@ -21,8 +21,8 @@ public class Book {
     private String isbn;
     double price;
 
-  @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Subject> subjects;
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Category> categories;
 
     public Book() {
     }
