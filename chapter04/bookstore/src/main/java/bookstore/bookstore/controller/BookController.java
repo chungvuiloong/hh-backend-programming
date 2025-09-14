@@ -73,6 +73,15 @@ public class BookController {
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable Long id, Model model) {
         Book book = repository.findById(id).orElse(new Book());
+
+        if (book.getCategories() != null && !book.getCategories().isEmpty()) {
+            List<String> categoryNames = new ArrayList<>();
+            for (Category category : book.getCategories()) {
+                categoryNames.add(category.getName());
+            }
+            book.setCategoryNames(categoryNames);
+        }
+
         model.addAttribute("book", book);
         return "edit";
     }
@@ -80,7 +89,32 @@ public class BookController {
     @PostMapping("/edit/{id}")
     public String updateBook(@PathVariable Long id, Book book) {
         book.setId(id);
-        repository.save(book);
+
+        Book existingBook = repository.findById(id).orElse(null);
+        if (existingBook != null && existingBook.getCategories() != null) {
+            for (Category category : existingBook.getCategories()) {
+                category.setBook(null);
+                categoryRepository.save(category);
+            }
+        }
+
+        Book savedBook = repository.save(book);
+
+        if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
+            List<Category> categories = new ArrayList<>();
+            for (String categoryName : book.getCategoryNames()) {
+                Category category = categoryRepository.findByName(categoryName);
+                if (category == null) {
+                    category = new Category(categoryName);
+                }
+                category.setBook(savedBook);
+                category = categoryRepository.save(category);
+                categories.add(category);
+            }
+            savedBook.setCategories(categories);
+            repository.save(savedBook);
+        }
+
         return "redirect:/";
     }
 
