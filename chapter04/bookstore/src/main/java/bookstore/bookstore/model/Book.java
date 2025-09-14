@@ -34,12 +34,14 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String author, int publicationYear, String isbn, double price) {
+
+    public Book(String title, String author, int publicationYear, String isbn, double price, List<String> categoryNames) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.categoryNames = categoryNames;
     }
 
     public Long getId() {
