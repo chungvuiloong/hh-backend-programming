@@ -23,9 +23,9 @@ public class BookController {
         this.repository = repository;
         this.categoryRepository = categoryRepository;
         if (repository.count() == 0) {
-            repository.save(new Book("Minna's Journey", "Minna Pellikka", 2020, "1234567890123", 29.99));
-            repository.save(new Book("Tanja's Adventure", "Tanja Bergius", 2019, "1234567890124", 19.99));
-            repository.save(new Book("Jukka's Quest", "Jukka Juslin", 2021, "1234567890125", 39.99));
+            repository.save(new Book("Minna's Journey", "Minna Pellikka", 2020, "1234567890123", 29.99, List.of("Fiction", "Horror")));
+            repository.save(new Book("Tanja's Adventure", "Tanja Bergius", 2019, "1234567890124", 19.99, List.of("Horror")));
+            repository.save(new Book("Jukka's Quest", "Jukka Juslin", 2021, "1234567890125", 39.99, List.of("Non-Fiction")));
         }
 
         if (categoryRepository.count() == 0) {
