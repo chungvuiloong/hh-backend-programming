@@ -16,6 +16,18 @@
                 <p>Publication Year: <input type="text" th:field="*{publicationYear}" /></p>
                 <p>ISBN: <input type="text" th:field="*{isbn}" /></p>
                 <p>Price: <input type="text" th:field="*{price}" /></p>
+                <p>
+                    Categories:
+                    <br>
+                    <input type="checkbox" th:field="*{categoryNames}" value="Horror" id="horror">
+                    <label for="horror">Horror</label>
+                    <br>
+                    <input type="checkbox" th:field="*{categoryNames}" value="Fiction" id="fiction">
+                    <label for="fiction">Fiction</label>
+                    <br>
+                    <input type="checkbox" th:field="*{categoryNames}" value="Non-Fiction" id="nonfiction">
+                    <label for="nonfiction">Non-Fiction</label>
+                </p>
                 <p><input type="submit" value="Update" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" /></p>
                 <p><a th:href="@{/}">Cancel</a></p>
             </form>
