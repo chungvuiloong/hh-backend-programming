@@ -1,8 +1,14 @@
 package bookstore.bookstore.model;
+import java.util.List;
+
+import javax.security.auth.Subject;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class Book {
@@ -14,6 +20,9 @@ public class Book {
     private int publicationYear;
     private String isbn;
     double price;
+
+  @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Subject> subjects;
 
     public Book() {
     }
