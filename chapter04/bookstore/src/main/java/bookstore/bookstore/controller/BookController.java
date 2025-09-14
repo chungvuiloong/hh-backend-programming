@@ -6,20 +6,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import bookstore.bookstore.model.Book;
+import bookstore.bookstore.model.Category;
 import bookstore.bookstore.repository.BookRepository;
+import bookstore.bookstore.repository.CategoryRepository;
 import org.springframework.ui.Model;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class BookController {
 
     private BookRepository repository;
-    
-    public BookController(BookRepository repository) {
+    private CategoryRepository categoryRepository;
+
+    public BookController(BookRepository repository, CategoryRepository categoryRepository) {
         this.repository = repository;
+        this.categoryRepository = categoryRepository;
         if (repository.count() == 0) {
             repository.save(new Book("Minna's Journey", "Minna Pellikka", 2020, "1234567890123", 29.99));
             repository.save(new Book("Tanja's Adventure", "Tanja Bergius", 2019, "1234567890124", 19.99));
             repository.save(new Book("Jukka's Quest", "Jukka Juslin", 2021, "1234567890125", 39.99));
+        }
+
+        if (categoryRepository.count() == 0) {
+            categoryRepository.save(new Category("Horror"));
+            categoryRepository.save(new Category("Fiction"));
+            categoryRepository.save(new Category("Non-Fiction"));
         }
     }
 
@@ -33,12 +45,28 @@ public class BookController {
     @GetMapping("/addbook")
     public String addBookForm(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";
     }
 
     @PostMapping({"/", "/addbook"})
     public String addBook(Book book) {
-        repository.save(book);
+        Book savedBook = repository.save(book);
+
+        if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
+            List<Category> categories = new ArrayList<>();
+            for (String categoryName : book.getCategoryNames()) {
+                Category category = categoryRepository.findByName(categoryName);
+                if (category == null) {
+                    category = new Category(categoryName);
+                }
+                category.setBook(savedBook); 
+                category = categoryRepository.save(category);
+                categories.add(category);
+            }
+            savedBook.setCategories(categories);
+            repository.save(savedBook);
+        }
         return "redirect:/";
     }
 
