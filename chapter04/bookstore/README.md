@@ -8,6 +8,17 @@ Spring Boot web application for managing a bookstore.
 ### Prerequisites
 - Java 17 (required)
 - Maven (wrapper included)
+- MongoDB Atlas account (for cloud database)
+
+### Configuration
+
+1. Create a `.env` file in the project root with your MongoDB credentials:
+   ```
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority&appName=YourApp
+   MONGODB_DATABASE=bookstore
+   ```
+
+   **Important:** Never commit the `.env` file to version control. Add it to `.gitignore`.
 
 ### Running the Application
 
