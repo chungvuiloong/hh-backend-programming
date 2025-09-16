@@ -9,6 +9,7 @@ Spring Boot web application for managing a bookstore.
 - Java 17 (required)
 - Maven (wrapper included)
 - MongoDB Atlas account (for cloud database)
+![alt text](image.png)
 
 ### Configuration
 
