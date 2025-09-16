@@ -3,6 +3,11 @@ Source: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapte
 Spring Boot web application for managing a bookstore.
 
 
+## Features (Whats working)
+- Create, Read, Update, and Delete (CRUD) operations for books
+- MongoDB Atlas integration (cloud database)
+- Ask Jere for the details in .env
+
 ## Getting Started
 
 ### Prerequisites
