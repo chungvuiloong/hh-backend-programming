@@ -1,0 +1,52 @@
+-CartCart data - CartSection
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MongoDB Database Explorer</title>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/">← Back to Bookstore</a>
+        </div>
+
+        <h1>MongoDB Database Explorer</h1>
+
+        <div class="stats">
+            <h3>Database Statistics</h3>
+            <p><strong>Total Books in MongoDB:</strong> <span th:text="${#lists.size(mongoBooks)}">0</span></p>
+            <p><strong>Database:</strong> bookstore</p>
+            <p><strong>Collection:</strong> books</p>
+        </div>
+
+        <div th:if="${#lists.isEmpty(mongoBooks)}">
+            <div class="book-card">
+                <h3>No books found in MongoDB</h3>
+                <p>Click the button below to add a test book:</p>
+                <a href="/mongo/add-sample" class="btn">Add Sample Books</a>
+            </div>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(mongoBooks)}">
+            <h2>Books in MongoDB Collection</h2>
+
+            <div class="book-card" th:each="book : ${mongoBooks}">
+                <h3 th:text="${book.title}">Book Title</h3>
+                <p><strong>Author:</strong> <span th:text="${book.author}">Author</span></p>
+                <p><strong>Year:</strong> <span th:text="${book.publicationYear}">Year</span></p>
+                <p><strong>ISBN:</strong> <span th:text="${book.isbn}">ISBN</span></p>
+                <p><strong>Price:</strong> $<span th:text="${book.price}">Price</span></p>
+                <p><strong>Categories:</strong> <span th:text="${#strings.listJoin(book.categoryNames, ', ')}">Categories</span></p>
+
+                <details>
+                    <summary>View Book Details</summary>
+                    <div class="json-view" th:text="${book.toString()}">Book Data</div>
+                </details>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
