@@ -5,7 +5,9 @@ Spring Boot web application for managing a bookstore.
 
 ## Features (Whats working)
 - Create, Read, Update, and Delete (CRUD) operations for books
+![alt text](image-1.png)
 - MongoDB Atlas integration (cloud database)
+![alt text](image.png)
 - Ask Jere for the details in .env
 
 ## Getting Started
@@ -14,7 +16,8 @@ Spring Boot web application for managing a bookstore.
 - Java 17 (required)
 - Maven (wrapper included)
 - MongoDB Atlas account (for cloud database)
-![alt text](image.png)
+
+
 
 ### Configuration
 
