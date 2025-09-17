@@ -21,10 +21,10 @@ Spring Boot web application for managing a bookstore.
 
 ### Configuration
 
-1. Create a `.env` file in the project root with your MongoDB credentials:
+1. Create a `.env` file in the project root with your MongoDB credentials: THIS IS A BAD PRACTICE TO PUT THE DETAILS IN README. FOR THIS ASSIGNMENT. I PUT IT HERE FOR MONGODB TO WORK.
    ```
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority&appName=YourApp
-   MONGODB_DATABASE=bookstore
+MONGODB_URI=mongodb+srv://cvl:test@bookstorecluster.38jjc1o.mongodb.net/?retryWrites=true&w=majority&appName=BookstoreCluster
+MONGODB_DATABASE=bookstore
    ```
 
    **Important:** Never commit the `.env` file to version control. Add it to `.gitignore`.
