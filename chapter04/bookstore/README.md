@@ -29,6 +29,12 @@ Spring Boot web application for managing a bookstore.
 
    **Important:** Never commit the `.env` file to version control. Add it to `.gitignore`.
 
+2. The application.properties file is configured to use these environment variables:
+   ```properties
+   spring.data.mongodb.uri=${MONGODB_URI}
+   spring.data.mongodb.database=${MONGODB_DATABASE}
+   ```
+
 ### Running the Application
 
 1. Set Java 17 as your JAVA_HOME:
