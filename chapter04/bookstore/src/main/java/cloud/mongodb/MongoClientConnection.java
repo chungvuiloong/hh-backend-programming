@@ -12,7 +12,7 @@ import org.bson.Document;
 
 public class MongoClientConnection {
     public static void main(String[] args) {
-        String connectionString = "mongodb+srv://chungvuiloong_db_user:<db_password>@bookstorecluster.gizktdd.mongodb.net/?retryWrites=true&w=majority&appName=BookstoreCluster";
+        String connectionString = "mongodb+srv://cvl:test@bookstorecluster.38jjc1o.mongodb.net/?retryWrites=true&w=majority&appName=BookstoreCluster";
 
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
