@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Server Programming</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet" href="/css/styles.css" th:href="@{/css/styles.css}">
+    </head>
+    <body class="mx-auto container p-4">
+        <h1 class="text-6xl">Welcome to the Bookstore</h1>
+        <div>
+            <table class="my-12 h-full max-w-[900px]  w-full">
+                <caption>Available Books</caption>
+                <thead class="py-10 bg-gray-300">                
+                    <tr>
+                    <!-- <th scope="col">ID</th> -->
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Publication Year</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Categories</th>
+                    <th scope="col" colspan="2">Actions</th>
+
+                    <!-- <th scope="col">Edit</th>
+                    <th scope="col">Delete</th> -->
+                </tr></thead>
+                <tbody class="py-10 text-center">
+                    <tr th:each="book, iterStat : ${books}" class="odd:bg-white even:bg-gray-200">
+                        <!-- <td th:text="${book.id}">Book ID</td> -->
+                        <td th:text="${book.title}">Book Title</td>
+                        <td th:text="${book.author}">Book Author</td>
+                        <td th:text="${book.publicationYear}">Book Publication Year</td>
+                        <td th:text="${book.isbn}">Book ISBN</td>
+                        <td th:text="${book.price}">Book Price</td>
+                        <td>
+                            <span th:each="category, iterStat : ${book.categories}">
+                                <span th:text="${category.name}"></span>
+                                <span th:if="${!iterStat.last}">, </span>
+                            </span>
+                        </td>
+                        <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+                        <td><a th:href="@{/delete/{id}(id=${book.id})}" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a th:href="@{/addbook}" class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Add New Book</a>
+            <a th:href="@{/mongo/test}" class="bg-blue-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">Go to MongoDB cloud</a>
+            <!-- <form action="#" th:action="@{/book}" th:object="${book}" method="post">
+                <p>Book title: <input type="text" th:field="*{title}" /></p>
+                <p>Author: <input type="text" th:field="*{author}" /></p>
+                <p>Publication Year: <input type="text" th:field="*{publicationYear}" /></p>
+                <p>ISBN: <input type="text" th:field="*{isbn}" /></p>
+                <p>Price: <input type="text" th:field="*{price}" /></p>
+                <p><input type="submit" value="Submit" /></p>
+            </form> -->
+            <ul>
+                <!-- <li th:each="book : ${books}">
+                    <span th:text="${book.title} + ' ' + ${book.author} + ' ' + ${book.publicationYear} + ' ' + ${book.isbn} + ' ' + ${book.price}"></span> -->
+                    <!-- <span th:text="${book.author}">Book Author</span>
+                    <span th:text="${book.publicationYear}">Book Publication Year</span>
+                    <span th:text="${book.isbn}">Book ISBN</span>
+                    <span th:text="${book.price}">Book Price</span> -->
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
