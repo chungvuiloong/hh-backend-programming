@@ -8,6 +8,7 @@ Spring Boot web application for managing a bookstore.
 ![alt text](image-1.png)
 - MongoDB Atlas integration (cloud database)
 ![alt text](image.png)
+![alt text](image_copy.png)
 - Ask Jere for the details in .env
 
 ## Getting Started
