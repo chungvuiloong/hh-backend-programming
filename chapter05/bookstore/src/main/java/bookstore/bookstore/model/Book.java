@@ -1,6 +1,7 @@
 package bookstore.bookstore.model;
 import java.util.List;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToOne;
@@ -20,6 +21,9 @@ public class Book {
     private int publicationYear;
     private String isbn;
     double price;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Book> books;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Category> categories;
