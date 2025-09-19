@@ -50,6 +50,11 @@ public class BookController {
         return (List<Book>) repository.findAll();
     }
 
+    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
+    public @ResponseBody Book oneBook(@PathVariable Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
     @GetMapping("/addbook")
     public String addBookForm(Model model) {
         model.addAttribute("book", new Book());
