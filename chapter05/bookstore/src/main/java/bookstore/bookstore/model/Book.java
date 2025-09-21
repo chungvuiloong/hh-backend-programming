@@ -3,8 +3,8 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,15 +22,13 @@ public class Book {
     private String isbn;
     double price;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Book> books;
-
-  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "book_category",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     private List<Category> categories;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
 
     @Transient
     private List<String> categoryNames;
@@ -83,9 +81,6 @@ public class Book {
         return categories;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
     public List<String> getCategoryNames() {
         return categoryNames;
@@ -115,9 +110,6 @@ public class Book {
         this.categories = categories;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public void setCategoryNames(List<String> categoryNames) {
         this.categoryNames = categoryNames;
