@@ -62,3 +62,27 @@ kill -9 <PID>
 ### Development
 
 The application includes Spring Boot DevTools for hot reload during development.
+
+## API Examples
+
+### POST - Create a Book
+```bash
+curl -H "Content-Type: application/json" -X POST -d '{"title":"Test Title", "author":"Test Author"}' http://localhost:8080/api/books
+```
+
+### DELETE - Delete Books
+```bash
+curl -X DELETE http://localhost:8080/books/1
+curl -X DELETE http://localhost:8080/books/2
+curl -X DELETE http://localhost:8080/books/3
+```
+
+### Search by Author
+```bash
+http://localhost:8080/api/books/search/findByAuthor?author=Jukka%20Juslin
+```
+
+### Search by Title
+```bash
+http://localhost:8080/api/books/search/findByTitle?title=Jukka's%20Quest
+```
