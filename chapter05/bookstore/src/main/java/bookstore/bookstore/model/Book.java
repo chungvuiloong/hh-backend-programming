@@ -111,20 +111,13 @@ public class Book {
         return this.price = price;
     }
 
-
-
     public void setCategories(List<Category> categories) {
         this.categories = categories;
-    }
-
-n categoryNames;
     }
 
     public void setCategory(Category category) {
         this.category = category;
     }
-
-
 
     public void setCategoryNames(List<String> categoryNames) {
         this.categoryNames = categoryNames;
