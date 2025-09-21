@@ -22,7 +22,7 @@ public class Book {
     private String isbn;
     double price;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(
         name = "book_category",
         joinColumns = @JoinColumn(name = "book_id"),

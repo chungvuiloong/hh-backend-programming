@@ -63,31 +63,25 @@ public class BookController {
     }
     @PostMapping({"/", "/addbook"})
     public String addBook(Book book, Model model) {
-        repository.save(book);
+        Book savedBook = repository.save(book);
+
+        if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
+            List<Category> categories = new ArrayList<>();
+            for (String categoryName : book.getCategoryNames()) {
+                Category category = categoryRepository.findByName(categoryName);
+                if (category == null) {
+                    category = new Category(categoryName);
+                    category = categoryRepository.save(category);
+                }
+                categories.add(category);
+            }
+            savedBook.setCategories(categories);
+            repository.save(savedBook);
+        }
         return "redirect:/";
     }
 
     // Lesson to self: Dont overcomplicated things. Keep it simple.
-    // @PostMapping({"/", "/addbook"})
-    // public String addBook(Book book) {
-    //     Book savedBook = repository.save(book);
-
-    //     if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
-    //         List<Category> categories = new ArrayList<>();
-    //         for (String categoryName : book.getCategoryNames()) {
-    //             Category category = categoryRepository.findByName(categoryName);
-    //             if (category == null) {
-    //                 category = new Category(categoryName);
-    //             }
-    //             category.setBook(savedBook); 
-    //             category = categoryRepository.save(category);
-    //             categories.add(category);
-    //         }
-    //         savedBook.setCategories(categories);
-    //         repository.save(savedBook);
-    //     }
-    //     return "redirect:/";
-    // }
 
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable Long id, Model model) {
