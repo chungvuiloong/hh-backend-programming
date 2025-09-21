@@ -61,27 +61,32 @@ public class BookController {
         model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";
     }
-
     @PostMapping({"/", "/addbook"})
-    public String addBook(Book book) {
-        Book savedBook = repository.save(book);
-
-        if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
-            List<Category> categories = new ArrayList<>();
-            for (String categoryName : book.getCategoryNames()) {
-                Category category = categoryRepository.findByName(categoryName);
-                if (category == null) {
-                    category = new Category(categoryName);
-                }
-                category.setBook(savedBook); 
-                category = categoryRepository.save(category);
-                categories.add(category);
-            }
-            savedBook.setCategories(categories);
-            repository.save(savedBook);
-        }
+    public String addBook(Book book, Model model) {
+        repository.save(book);
         return "redirect:/";
     }
+
+    // @PostMapping({"/", "/addbook"})
+    // public String addBook(Book book) {
+    //     Book savedBook = repository.save(book);
+
+    //     if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
+    //         List<Category> categories = new ArrayList<>();
+    //         for (String categoryName : book.getCategoryNames()) {
+    //             Category category = categoryRepository.findByName(categoryName);
+    //             if (category == null) {
+    //                 category = new Category(categoryName);
+    //             }
+    //             category.setBook(savedBook); 
+    //             category = categoryRepository.save(category);
+    //             categories.add(category);
+    //         }
+    //         savedBook.setCategories(categories);
+    //         repository.save(savedBook);
+    //     }
+    //     return "redirect:/";
+    // }
 
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable Long id, Model model) {
