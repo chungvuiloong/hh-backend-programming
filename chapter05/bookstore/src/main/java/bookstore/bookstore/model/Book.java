@@ -79,6 +79,10 @@ public class Book {
         return price;
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -99,9 +103,7 @@ public class Book {
         return this.price = price;
     }
 
-    public List<Category> getCategories() {
-        return categories;
-    }
+
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
