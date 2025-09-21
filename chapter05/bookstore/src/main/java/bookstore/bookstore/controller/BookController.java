@@ -105,37 +105,44 @@ public class BookController {
         return "edit";
     }
 
-    @PostMapping("/edit/{id}")
-    public String updateBook(@PathVariable Long id, Book book) {
-        book.setId(id);
-
-        Book existingBook = repository.findById(id).orElse(null);
-        if (existingBook != null && existingBook.getCategories() != null) {
-            for (Category category : existingBook.getCategories()) {
-                category.setBook(null);
-                categoryRepository.save(category);
-            }
+        @PostMapping("/edit/{id}")
+        public String updateBook(@PathVariable Long id, Book book) {
+            book.setId(id);
+            repository.save(book);
+            return "redirect:/";
         }
 
-        Book savedBook = repository.save(book);
+    // @PostMapping("/edit/{id}")
+    // public String updateBook(@PathVariable Long id, Book book) {
+    //     book.setId(id);
 
-        if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
-            List<Category> categories = new ArrayList<>();
-            for (String categoryName : book.getCategoryNames()) {
-                Category category = categoryRepository.findByName(categoryName);
-                if (category == null) {
-                    category = new Category(categoryName);
-                }
-                category.setBook(savedBook);
-                category = categoryRepository.save(category);
-                categories.add(category);
-            }
-            savedBook.setCategories(categories);
-            repository.save(savedBook);
-        }
+    //     Book existingBook = repository.findById(id).orElse(null);
+    //     if (existingBook != null && existingBook.getCategories() != null) {
+    //         for (Category category : existingBook.getCategories()) {
+    //             category.setBook(null);
+    //             categoryRepository.save(category);
+    //         }
+    //     }
 
-        return "redirect:/";
-    }
+    //     Book savedBook = repository.save(book);
+
+    //     if (book.getCategoryNames() != null && !book.getCategoryNames().isEmpty()) {
+    //         List<Category> categories = new ArrayList<>();
+    //         for (String categoryName : book.getCategoryNames()) {
+    //             Category category = categoryRepository.findByName(categoryName);
+    //             if (category == null) {
+    //                 category = new Category(categoryName);
+    //             }
+    //             category.setBook(savedBook);
+    //             category = categoryRepository.save(category);
+    //             categories.add(category);
+    //         }
+    //         savedBook.setCategories(categories);
+    //         repository.save(savedBook);
+    //     }
+
+    //     return "redirect:/";
+    // }
 
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
