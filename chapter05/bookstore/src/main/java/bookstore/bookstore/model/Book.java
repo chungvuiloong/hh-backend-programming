@@ -83,6 +83,14 @@ public class Book {
         return categories;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<String> getCategoryNames() {
+        return categoryNames;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -109,17 +117,14 @@ public class Book {
         this.categories = categories;
     }
 
-    public Category getCategory() {
-        return category;
+n categoryNames;
     }
 
     public void setCategory(Category category) {
         this.category = category;
     }
 
-    public List<String> getCategoryNames() {
-        return categoryNames;
-    }
+
 
     public void setCategoryNames(List<String> categoryNames) {
         this.categoryNames = categoryNames;
