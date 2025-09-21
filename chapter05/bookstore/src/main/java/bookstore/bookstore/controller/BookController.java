@@ -67,6 +67,7 @@ public class BookController {
         return "redirect:/";
     }
 
+    // Lesson to self: Dont overcomplicated things. Keep it simple.
     // @PostMapping({"/", "/addbook"})
     // public String addBook(Book book) {
     //     Book savedBook = repository.save(book);
