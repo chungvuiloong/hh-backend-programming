@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Edit Book</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link rel="stylesheet" href="/css/styles.css" th:href="@{/css/styles.css}">
+    </head>
+    <body>
+        <h1>Edit Book</h1>
+        <div>
+            <form action="#" th:action="@{/edit/{id}(id=${book.id})}" th:object="${book}" method="post">
+                <p>Book title: <input type="text" th:field="*{title}" /></p>
+                <p>Author: <input type="text" th:field="*{author}" /></p>
+                <p>Publication Year: <input type="text" th:field="*{publicationYear}" /></p>
+                <p>ISBN: <input type="text" th:field="*{isbn}" /></p>
+                <p>Price: <input type="text" th:field="*{price}" /></p>
+                <p>
+                    Categories:
+                    <br>
+                    <input type="checkbox" th:field="*{categoryNames}" value="Horror" id="horror">
+                    <label for="horror">Horror</label>
+                    <br>
+                    <input type="checkbox" th:field="*{categoryNames}" value="Fiction" id="fiction">
+                    <label for="fiction">Fiction</label>
+                    <br>
+                    <input type="checkbox" th:field="*{categoryNames}" value="Non-Fiction" id="nonfiction">
+                    <label for="nonfiction">Non-Fiction</label>
+                </p>
+                <p><input type="submit" value="Update" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" /></p>
+                <p><a th:href="@{/}">Cancel</a></p>
+            </form>
+        </div>
+    </body>
+</html>
