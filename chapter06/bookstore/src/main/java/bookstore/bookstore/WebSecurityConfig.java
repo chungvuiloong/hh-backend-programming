@@ -48,9 +48,16 @@ public class WebSecurityConfig {
             .roles("ADMIN")
             .build();
 
+        UserDetails pekka = User.builder()
+            .username("pekka")
+            .password(passwordEncoder.encode("pekka"))
+            .roles("ADMIN")
+            .build();
+
         List<UserDetails> users = new ArrayList<>();
         users.add(user);
         users.add(admin);
+        users.add(pekka);
 
         return new InMemoryUserDetailsManager(users);
     }
