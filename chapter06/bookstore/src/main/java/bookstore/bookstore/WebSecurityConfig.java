@@ -23,6 +23,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/addbook").authenticated()
                 .anyRequest().authenticated()
             )
             .formLogin(formlogin -> formlogin
@@ -30,7 +31,8 @@ public class WebSecurityConfig {
             )
             .logout(logout -> logout
                 .permitAll()
-            );
+            )
+            .csrf(csrf -> csrf.disable());
         return http.build();
     }
 
