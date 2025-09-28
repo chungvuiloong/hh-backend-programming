@@ -55,6 +55,11 @@ public class BookController {
         return repository.findById(id).orElse(null);
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping("/addbook")
     public String addBookForm(Model model) {
         model.addAttribute("book", new Book());
