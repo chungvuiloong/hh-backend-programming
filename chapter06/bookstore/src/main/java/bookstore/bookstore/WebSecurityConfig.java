@@ -23,7 +23,6 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/addbook").authenticated()
                 .anyRequest().authenticated()
             )
             .formLogin(formlogin -> formlogin
