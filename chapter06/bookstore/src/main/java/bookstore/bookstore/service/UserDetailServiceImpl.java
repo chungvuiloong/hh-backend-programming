@@ -27,7 +27,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
         UserDetails user = new org.springframework.security.core.userdetails.User(username,
                 currentUser.getPasswordHash(),
-                AuthorityUtils.createAuthorityList(currentUser.getRole()));
+                AuthorityUtils.createAuthorityList("ROLE_" + currentUser.getRole()));
         return user;
     }
 }
