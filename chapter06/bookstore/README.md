@@ -1,14 +1,21 @@
 # Bookstore Application
-Source: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter05/bookstore
+Source: https://github.com/chungvuiloong/hh-backend-programming/tree/main/chapter06/bookstore
 Spring Boot web application for managing a bookstore.
 
 
 ## Features (Whats working)
 - Create, Read, Update, and Delete (CRUD) operations for books
 ![alt text](image-1.png)
-- MongoDB Atlas integration (cloud database)
-![alt text](image.png)
-- Ask Jere for the details in .env
+- Security
+  - Spring Security integration with authentication for all URLs
+  - Custom login page and logout functionality
+  - User entity with username (unique), password, email, and role attributes
+  - UserDetailsService implementation for database authentication
+  - BCrypt password hashing
+  - Role-based access control (USER and ADMIN roles)
+  - Delete book functionality restricted to ADMIN role only
+  - Display of authenticated username in the booklist page
+
 
 ## Getting Started
 
