@@ -75,4 +75,35 @@ public class LocationUtil {
         }
         return null;
     }
+
+    public static String getWeatherByCity(String city) {
+        String apiKey = System.getProperty("OPEN_WEATHER_API_KEY");
+        if (apiKey == null || apiKey.isEmpty()) {
+            System.err.println("OPEN_WEATHER_API_KEY environment variable is not set.");
+            return null;
+        }
+        String urlString = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+            JSONObject json = new JSONObject(response.toString());
+            return json.toString();
+
+        } catch (Exception e) {
+            System.err.println("Could not retrieve weather via OpenWeather API.");
+            System.err.println("Error details: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
