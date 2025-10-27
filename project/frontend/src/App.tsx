@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import LocationDisplay from './components/LocationDisplay';
 
 function App() {
   return (
-    <div className="text-4xl bg-blue-200">
-      <div>frontend text</div>
+    <div>
+        <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
+          Friend List
+        </h1>
+        <LocationDisplay />
     </div>
   );
 }
