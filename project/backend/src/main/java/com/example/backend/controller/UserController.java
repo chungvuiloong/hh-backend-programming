@@ -27,6 +27,12 @@ public class UserController {
         return city != null ? city : "Unknown";
     }
 
+    @GetMapping("/location/city/weather")
+    public String getCityWeather() {
+        String city = LocationUtil.getCityByIp();
+        return city != null ? LocationUtil.getWeatherByCity(city) : "Unknown";
+    }
+
     @GetMapping("/location/info")
     public Map<String, String> getLocationInfo() {
         Map<String, String> location = new HashMap<>();
