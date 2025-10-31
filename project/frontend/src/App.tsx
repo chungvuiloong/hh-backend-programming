@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import LocationDisplay from './components/LocationDisplay';
+import Form from './components/FriendForm';
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
           Friend List
         </h1>
         <LocationDisplay />
+        <div>
+          <Form />
+        </div>
     </div>
   );
 }
