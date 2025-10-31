@@ -70,7 +70,7 @@ const LocationDisplay: React.FC = () => {
                         {/* <span>{weather || 'Unknown'}</span> */}
                         <img
                             src={`http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`}
-                            alt={weatherData?.weather[0].description || 'Weather icon'}
+                            alt={weatherData?.weather[0]?.description || 'Weather icon'}
                         />
                     </div>
                 </div>
