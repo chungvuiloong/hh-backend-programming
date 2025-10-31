@@ -3,6 +3,7 @@ import { locationService, LocationInfo } from '../services/locationService';
 
 const LocationDisplay: React.FC = () => {
     const [location, setLocation] = useState<LocationInfo | null>(null);
+    const [weatherData, setWeatherData] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -16,6 +17,8 @@ const LocationDisplay: React.FC = () => {
             setError(null);
             const data = await locationService.getLocationInfo();
             setLocation(data);
+            const weatherInformation = await locationService.getCityWeather();
+            setWeatherData(weatherInformation);
         } catch (err) {
             setError('Failed to fetch location. Make sure the backend is running.');
             console.error('Error fetching location:', err);
@@ -45,11 +48,13 @@ const LocationDisplay: React.FC = () => {
         );
     }
 
+    console.log(weatherData);
+
     return (
         <div>
             <h2>Your Location</h2>
 
-            {location ? (
+            {location && (
                 <div>
                     <div>
                         <span>Country:</span>
@@ -60,9 +65,15 @@ const LocationDisplay: React.FC = () => {
                         <span>City:</span>
                         <span>{location.city || 'Unknown'}</span>
                     </div>
+                    <div>
+                        <span>Weather:</span>
+                        {/* <span>{weather || 'Unknown'}</span> */}
+                        <img
+                            src={`http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`}
+                            alt={weatherData?.weather[0].description || 'Weather icon'}
+                        />
+                    </div>
                 </div>
-            ) : (
-                <p>No location data available</p>
             )}
 
             <button
