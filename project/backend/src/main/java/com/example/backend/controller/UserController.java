@@ -1,13 +1,18 @@
 package com.example.backend.controller;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.example.backend.util.LocationUtil;
+import com.example.backend.service.ConvexService;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
+
+    @Autowired
+    private ConvexService convexService;
     
     @GetMapping("/")
     public String home() {
@@ -36,8 +41,16 @@ public class UserController {
     @GetMapping("/location/info")
     public Map<String, String> getLocationInfo() {
         Map<String, String> location = new HashMap<>();
-        location.put("country", LocationUtil.getCountryByIp());
-        location.put("city", LocationUtil.getCityByIp());
+        String country = LocationUtil.getCountryByIp();
+        String city = LocationUtil.getCityByIp();
+
+        location.put("country", country);
+        location.put("city", city);
+        
+        if (country != null && city != null) {
+            convexService.addLocation(country, city);
+        }
+
         return location;
     }
 }
