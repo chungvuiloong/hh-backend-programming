@@ -14,7 +14,6 @@ public class UserController {
     @Autowired
     private ConvexService convexService;
     
-    
     @GetMapping("/")
     public String home() {
         System.out.println(LocationUtil.getCountryByIp());
