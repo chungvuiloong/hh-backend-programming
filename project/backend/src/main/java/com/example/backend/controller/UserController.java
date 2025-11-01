@@ -26,6 +26,12 @@ public class UserController {
         return country != null ? country : "Unknown";
     }
 
+    @GetMapping("/location/country/code")
+    public String getCountryCode() {
+        String countryCode = LocationUtil.getCountryCode();
+        return countryCode != null ? countryCode : "Unknown";
+    }
+
     @GetMapping("/location/city")
     public String getCity() {
         String city = LocationUtil.getCityByIp();
@@ -35,7 +41,8 @@ public class UserController {
     @GetMapping("/location/city/weather")
     public String getCityWeather() {
         String city = LocationUtil.getCityByIp();
-        return city != null ? LocationUtil.getWeatherByCity(city) : "Unknown";
+        String countryCode = LocationUtil.getCountryCode();
+        return city != null ? LocationUtil.getWeatherByCity(city, countryCode) : "Unknown";
     }
 
     @GetMapping("/location/info")
@@ -46,7 +53,7 @@ public class UserController {
 
         location.put("country", country);
         location.put("city", city);
-        
+
         if (country != null && city != null) {
             convexService.addLocation(country, city);
         }

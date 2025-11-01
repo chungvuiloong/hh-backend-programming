@@ -16,6 +16,32 @@ public class LocationUtil {
      *
      * @return The country name as a String, or null on failure.
      */
+    public static String getCountryCode() {
+        try {
+            URL url = new URL(IP_API_URL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            JSONObject json = new JSONObject(response.toString());
+
+            if (json.getString("status").equals("success")) {
+                return json.getString("countryCode");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Could not retrieve country code via IP API.");
+        }
+        return null;
+    }
     public static String getCountryByIp() {
         try {
 
@@ -76,13 +102,18 @@ public class LocationUtil {
         return null;
     }
 
-    public static String getWeatherByCity(String city) {
+    public static String getWeatherByCity(String city, String countryCode) {
         String apiKey = System.getProperty("OPEN_WEATHER_API_KEY");
         if (apiKey == null || apiKey.isEmpty()) {
             System.err.println("OPEN_WEATHER_API_KEY environment variable is not set.");
             return null;
         }
-        String urlString = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+
+        // Previous call format:
+        // String urlString = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+
+        // New call format with country code for better accuracy
+        String urlString = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + countryCode + "&appid=" + apiKey;
 
         try {
             URL url = new URL(urlString);
@@ -107,3 +138,4 @@ public class LocationUtil {
         return null;
     }
 }
+
