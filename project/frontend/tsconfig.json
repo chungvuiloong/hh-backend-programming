@@ -18,9 +18,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "convex/*": ["../convex/*"]
+    }
   },
   "include": [
-    "src"
+    "src",
+    "convex/_generated"
   ]
 }

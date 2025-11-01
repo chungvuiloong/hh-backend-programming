@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import LocationDisplay from './components/LocationDisplay';
 import Form from './components/FriendForm';

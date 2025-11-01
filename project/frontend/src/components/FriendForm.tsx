@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { locationService } from '../services/locationService';
+import { useMutation } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 interface FriendFormData {
   name: string;
@@ -9,6 +11,7 @@ interface FriendFormData {
 }
 
 const FriendForm: React.FC = () => {
+    const addLocation = useMutation(api.locations.addLocation);
     const [city, setCity] = useState<string | null>(null);
     const [country, setCountry] = useState<string | null>(null);
     const [formData, setFormData] = useState<FriendFormData>({
@@ -34,16 +37,29 @@ const FriendForm: React.FC = () => {
     }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const name = e.currentTarget.name;
+    const value = e.currentTarget.value;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+
+    if (city && country) {
+      try {
+        const locationId = await addLocation({
+          city: city,
+          country: country
+        });
+        console.log('Location saved to Convex with ID:', locationId);
+      } catch (error) {
+        console.error('Failed to save location to Convex:', error);
+      }
+    }
 
     setFormData({
       name: '',

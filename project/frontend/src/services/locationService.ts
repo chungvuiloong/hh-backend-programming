@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const API_BASE_URL = '';
-
 export interface LocationInfo {
     country: string;
     countryCode: string;

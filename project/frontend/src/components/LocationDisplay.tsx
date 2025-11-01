@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { locationService, LocationInfo } from '../services/locationService';
+import React, { useState } from 'react';
+import { locationService } from '../services/locationService';
+import { useQuery } from 'convex/react';
+import { api } from '../../convex/_generated/api';
 
 const LocationDisplay: React.FC = () => {
-    const [location, setLocation] = useState<LocationInfo | null>(null);
+    const convexLocation = useQuery(api.locations.getLatestLocation);
     const [weatherData, setWeatherData] = useState<any>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        fetchLocation();
-    }, []);
 
     const fetchLocation = async () => {
         try {
             setLoading(true);
             setError(null);
-            const data = await locationService.getLocationInfo();
-            setLocation(data);
+            await locationService.getLocationInfo();
+
             const weatherInformation = await locationService.getCityWeather();
             setWeatherData(weatherInformation);
         } catch (err) {
@@ -54,16 +52,16 @@ const LocationDisplay: React.FC = () => {
         <div>
             <h2>Your Location</h2>
 
-            {location && (
+            {convexLocation && (
                 <div>
                     <div>
                         <span>Country:</span>
-                        <span>{location.country || 'Unknown'}</span>
+                        <span>{convexLocation.country || 'Unknown'}</span>
                     </div>
 
                     <div>
                         <span>City:</span>
-                        <span>{location.city || 'Unknown'}</span>
+                        <span>{convexLocation.city || 'Unknown'}</span>
                     </div>
                     <div>
                         <span>Weather:</span>
