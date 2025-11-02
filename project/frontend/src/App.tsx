@@ -13,14 +13,17 @@ function App() {
     React.useEffect(() => {
         const fetchLocationInfo = async () => {
             const info = await locationService.getLocationInfo();
+            console.log(info);
             setLocationInfo(info);
-            setCountry(info.country);
-            setCity(info.city);
-            setCountryCode(info.countryCode);
+            setCountry(info?.country_name);
+            setCity(info?.city);
+            setCountryCode(info?.country_code);
         };
 
         fetchLocationInfo();
     }, []);
+
+   
 
     return (
         <div>

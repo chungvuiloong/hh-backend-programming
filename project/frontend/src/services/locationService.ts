@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { get } from 'http';
 
-const IP_API_URL = "http://ip-api.com/json/";
+const IP_API_URL = "https://ipapi.co/json/";
 
 export interface LocationInfo {
-    country: string;
-    countryCode: string;
+    country_name: string;
+    country_code: string;
     city: string;
     weather: string;
 }
@@ -18,7 +18,7 @@ export const locationService = {
 
     getCountry: async (): Promise<string> => {
         const { data } = await axios.get<LocationInfo>(IP_API_URL);
-        return data.country;
+        return data.country_name;
     },
 
     getCity: async (): Promise<string> => {
@@ -28,7 +28,7 @@ export const locationService = {
 
     getCountryCode: async (): Promise<string> => {
         const { data } = await axios.get<LocationInfo>(IP_API_URL);
-        return data.countryCode;
+        return data.country_code;
     }
 
     // Get all location info
