@@ -22,10 +22,10 @@ const FriendForm: React.FC = () => {
     });
 
     const getCityAndCountry = async () => {
-        const city = await locationService.getCity();
-        const country = await locationService.getCountry();
-        setCity(city);
-        setCountry(country);
+        // const city = await locationService.getCity();
+        // const country = await locationService.getCountry();
+        // setCity(city);
+        // setCountry(country);
         setFormData(prev => ({
             ...prev,
             placeOfMeeting: `${city}, ${country}`.trim()
