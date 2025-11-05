@@ -1,35 +1,55 @@
 import axios from 'axios';
-import { get } from 'http';
-
-const IP_API_URL = "https://ipapi.co/json/";
+const API_BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://friend-list-d047c88faa49.herokuapp.com'
+    : 'http://localhost:8080';
 
 export interface LocationInfo {
     country_name: string;
     country_code: string;
     city: string;
-    weather: string;
+    weather?: string;
 }
 
 export const locationService = {
-    getLocationInfo: async (): Promise<LocationInfo> => {
-        const { data } = await axios.get<LocationInfo>(IP_API_URL);
-        return data;
+    getPublicIP: async (): Promise<string> => {
+        const { data } = await axios.get<{ ip: string }>(API_BASE_URL + `/ip`);
+        return data.ip;
     },
 
-    getCountry: async (): Promise<string> => {
-        const { data } = await axios.get<LocationInfo>(IP_API_URL);
-        return data.country_name;
-    },
+    // getLocationInfo: async (): Promise<LocationInfo> => {
+    //     const { data } = await axios.get<LocationInfo>(IP2_LOCATION_URL + `?ip=` + await locationService.getPublicIP());
+    //     return data;
+    // }
 
-    getCity: async (): Promise<string> => {
-        const { data } = await axios.get<LocationInfo>(IP_API_URL);
-        return data.city;
-    },
+    // getLocationInfo: async (): Promise<LocationInfo> => {
+    //     const geo = await geoip.lookup(await locationService.getPublicIP());
+    //     return {
+    //         country_name: geo.country,
+    //         country_code: geo.country_code,
+    //         city: geo.city,
+    //     };
+    // },
 
-    getCountryCode: async (): Promise<string> => {
-        const { data } = await axios.get<LocationInfo>(IP_API_URL);
-        return data.country_code;
-    }
+    // getLocationInfo: async (): Promise<LocationInfo> => {
+    //     const { data } = await axios.get<LocationInfo>(IP_API_URL);
+    //     return data;
+    // },
+
+    // getCountry: async (): Promise<string> => {
+    //     const { data } = await axios.get<LocationInfo>(IP_API_URL);
+    //     return data.country_name;
+    // },
+
+    // getCity: async (): Promise<string> => {
+    //     const { data } = await axios.get<LocationInfo>(IP_API_URL);
+    //     return data.city;
+    // },
+
+    // getCountryCode: async (): Promise<string> => {
+    //     const { data } = await axios.get<LocationInfo>(IP_API_URL);
+    //     return data.country_code;
+    // }
 
     // Get all location info
     // getLocationInfo: async (): Promise<LocationInfo> => {
