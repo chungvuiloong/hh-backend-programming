@@ -9,44 +9,27 @@ const LocationDisplay: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    // const fetchLocation = async () => {
-    //     try {
-    //         setLoading(true);
-    //         setError(null);
-    //         await locationService.getLocationInfo();
+    React.useEffect(() => {
+        fetchLocation();
+    }, []);
 
-    //         const weatherInformation = await locationService.getCityWeather();
-    //         setWeatherData(weatherInformation);
-    //     } catch (err) {
-    //         setError('Failed to fetch location. Make sure the backend is running.');
-    //         console.error('Error fetching location:', err);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
+    const fetchLocation = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            await locationService.getLocationInfo();
+            const weatherInformation = await locationService.getWeatherByCity();
+            setWeatherData(weatherInformation);
+        } catch (err) {
+            setError('Failed to fetch location. Make sure the backend is running.');
+            console.error('Error fetching location:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    if (loading) {
-        return (
-            <div>
-                <p>Loading location...</p>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div>
-                <p>{error}</p>
-                {/* <button
-                    onClick={fetchLocation}
-                >
-                    Retry
-                </button> */}
-            </div>
-        );
-    }
-
-    console.log(weatherData);
+    if (loading) return <>Loading...</>
+    if (error) return <>{error}</>
 
     return (
         <div>

@@ -17,6 +17,18 @@ export const locationService = {
         return response.text();
     },
 
+    getLocationInfo: async (): Promise<LocationInfo> => {
+        const response = await fetch(`${API_BASE_URL}/location`);
+        const data = await response.json();
+        return data;
+    },
+
+    getWeatherByCity: async (): Promise<string | null> => {
+        const response = await fetch(`${API_BASE_URL}/location/country/city/weather`);
+        const data = await response.json();
+        return data;
+    }
+
     // getLocationInfo: async (): Promise<LocationInfo> => {
     //     const { data } = await axios.get<LocationInfo>(IP2_LOCATION_URL + `?ip=` + await locationService.getPublicIP());
     //     return data;
