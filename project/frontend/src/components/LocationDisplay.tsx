@@ -57,11 +57,11 @@ const LocationDisplay: React.FC = () => {
                 </div>
             )}
 
-            {/* <button
+            <button
                 onClick={fetchLocation}
             >
                 Refresh Location
-            </button> */}
+            </button>
         </div>
     );
 };
