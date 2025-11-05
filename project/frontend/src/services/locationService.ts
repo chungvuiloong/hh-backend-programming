@@ -13,8 +13,8 @@ export interface LocationInfo {
 
 export const locationService = {
     getPublicIP: async (): Promise<string> => {
-        const { data } = await axios.get<{ ip: string }>(API_BASE_URL + `/ip`);
-        return data.ip;
+        const response = await fetch(`${API_BASE_URL}/ip`);
+        return response.text();
     },
 
     // getLocationInfo: async (): Promise<LocationInfo> => {
