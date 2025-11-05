@@ -6,6 +6,7 @@ import { api } from '../../convex/_generated/api';
 const LocationDisplay: React.FC = () => {
     const convexLocation = useQuery(api.locations.getLatestLocation);
     const [weatherData, setWeatherData] = useState<any>(null);
+    const [location, setLocation] = useState<any | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -17,9 +18,10 @@ const LocationDisplay: React.FC = () => {
         try {
             setLoading(true);
             setError(null);
-            await locationService.getLocationInfo();
+            const locationData = await locationService.getLocationInfo();
             const weatherInformation = await locationService.getWeatherByCity();
             setWeatherData(weatherInformation);
+            setLocation(locationData);
         } catch (err) {
             setError('Failed to fetch location. Make sure the backend is running.');
             console.error('Error fetching location:', err);
@@ -31,31 +33,30 @@ const LocationDisplay: React.FC = () => {
     if (loading) return <>Loading...</>
     if (error) return <>{error}</>
 
+    console.log(convexLocation);
+
     return (
         <div>
             <h2>Your Location</h2>
-
-            {convexLocation && (
+            <div>
                 <div>
-                    <div>
-                        <span>Country:</span>
-                        <span>{convexLocation.country || 'Unknown'}</span>
-                    </div>
-
-                    <div>
-                        <span>City:</span>
-                        <span>{convexLocation.city || 'Unknown'}</span>
-                    </div>
-                    <div>
-                        <span>Weather:</span>
-                        {/* <span>{weather || 'Unknown'}</span> */}
-                        <img
-                            src={`http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`}
-                            alt={weatherData?.weather[0]?.description || 'Weather icon'}
-                        />
-                    </div>
+                    <span>Country:</span>
+                    <span>{location?.country_name || 'Unknown'}</span>
                 </div>
-            )}
+
+                <div>
+                    <span>City:</span>
+                    <span>{location?.city_name || 'Unknown'}</span>
+                </div>
+                <div>
+                    <span>Weather:</span>
+                    {/* <span>{weather || 'Unknown'}</span> */}
+                    <img
+                        src={`http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`}
+                        alt={weatherData?.weather[0]?.description || 'Weather icon'}
+                    />
+                </div>
+            </div>
 
             <button
                 onClick={fetchLocation}
