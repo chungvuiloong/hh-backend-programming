@@ -1,6 +1,10 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
+// Note to self: To call this from Java backend, 
+// For this file, locations.ts, use the function path prefix "locations:"
+// For example, use function path "locations:addLocation", "locations:getLocationById", "locations:getLocationsByCountry"
+
 // Mutation to add a location (called from Java backend)
 export const addLocation = mutation({
   args: {
@@ -19,6 +23,7 @@ export const addLocation = mutation({
   },
 });
 
+// Note to self: To call this from Java backend, use function path "locations:addLocation"
 // Query to get the latest location
 export const getLatestLocation = query({
   args: {},
@@ -32,6 +37,7 @@ export const getLatestLocation = query({
   },
 });
 
+// Note to self: To call this from Java backend, use function path "locations:getAllLocations"
 // Query to get all locations
 export const getAllLocations = query({
   args: {},
@@ -40,6 +46,7 @@ export const getAllLocations = query({
   },
 });
 
+// Note to self: To call this from Java backend, use function path "locations:getLocationsByCountry"
 // Query to get locations by country
 export const getLocationsByCountry = query({
   args: {
