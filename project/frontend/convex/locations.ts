@@ -48,6 +48,7 @@ export const getAllLocations = query({
 
 // Note to self: To call this from Java backend, use function path "locations:getLocationsByCountry"
 // Query to get locations by country
+// Note to self: https://stack.convex.dev/complex-filters-in-convex Read more about filtering fields in Convex
 export const getLocationsByCountry = query({
   args: {
     country: v.string(),
