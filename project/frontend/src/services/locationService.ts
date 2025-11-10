@@ -23,10 +23,35 @@ export const locationService = {
         return data;
     },
 
+    getCountry: async (): Promise<string> => {
+        const response = await fetch(`${API_BASE_URL}/location/country`);
+        return response.text();
+    },
+
+    getCity: async (): Promise<string> => {
+        const response = await fetch(`${API_BASE_URL}/location/country/city`);
+        return response.text();
+    },
+
+    getCountryCode: async (): Promise<string> => {
+        const response = await fetch(`${API_BASE_URL}/location/country/code`);
+        return response.text();
+    },
+
     getWeatherByCity: async (): Promise<string | null> => {
         const response = await fetch(`${API_BASE_URL}/location/country/city/weather`);
         const data = await response.json();
         return data;
+    },
+
+    // Get locations from Convex by country
+    getLocationsByCountry: async (country: string): Promise<any> => {
+        const response = await fetch(`${API_BASE_URL}/convex/locations?country=${encodeURIComponent(country)}`);
+        console.log(response);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch locations: ${response.status}`);
+        }
+        return response.json();
     }
 
     // getLocationInfo: async (): Promise<LocationInfo> => {

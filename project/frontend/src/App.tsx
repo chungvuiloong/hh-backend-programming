@@ -11,7 +11,7 @@ function App() {
         </h1>
         <LocationDisplay />
         <div>
-          {/* <Form /> */}
+          <Form />
         </div>
     </div>
   );
