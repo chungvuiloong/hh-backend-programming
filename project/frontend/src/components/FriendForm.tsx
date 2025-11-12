@@ -2,23 +2,29 @@ import React, { useState } from 'react';
 import { locationService } from '../services/locationService';
 import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
+import { useAuth } from '@clerk/clerk-react';
 
 interface FriendFormData {
-  name: string;
-  email: string;
-  citizenship: string;
-  placeOfMeeting: string;
+    fullName: string;
+    email?: string;
+    identity?: string;
+    placeOfMeeting?: string;
+    phoneNumber?: string;
+    notesAboutFriend?: string;
 }
 
 const FriendForm: React.FC = () => {
-    const addLocation = useMutation(api.locations.addLocation);
+    const { userId } = useAuth();
+    const addFriend = useMutation(api.users.addFriendToUser);
     const [city, setCity] = useState<string | null>(null);
     const [country, setCountry] = useState<string | null>(null);
     const [formData, setFormData] = useState<FriendFormData>({
-        name: '',
+        fullName: '',
         email: '',
-        citizenship: '',
-        placeOfMeeting: `${city || 'Unknown'}, ${country || 'Unknown'}`.trim()
+        identity: '',
+        placeOfMeeting: `${city || 'Unknown'}, ${country || 'Unknown'}`.trim(),
+        phoneNumber: '',
+        notesAboutFriend: ''
     });
 
     const getCityAndCountry = async () => {
@@ -48,25 +54,25 @@ const FriendForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-
-    if (city && country) {
-      try {
-        const locationId = await addLocation({
-          city: city,
-          country: country
-        });
-        console.log('Location saved to Convex with ID:', locationId);
-      } catch (error) {
-        console.error('Failed to save location to Convex:', error);
+    await addFriend({
+      userID: userId,
+      friend: {
+        fullname: formData.fullName,
+        firstMeet: formData.placeOfMeeting || '',
+        identity: formData.identity,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        notesAboutFriend: formData.notesAboutFriend
       }
-    }
+    });
 
     setFormData({
-      name: '',
+      fullName: '',
       email: '',
-      citizenship: '',
-      placeOfMeeting: `${city}, ${country}`.trim()
+      identity: '',
+      placeOfMeeting: `${city}, ${country}`.trim(),
+      phoneNumber: '',
+      notesAboutFriend: ''
     });
   };
 
@@ -75,21 +81,21 @@ const FriendForm: React.FC = () => {
       <h2>User Information</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">
-            Name
+          <label htmlFor="fullName">
+            Fullname
           </label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="fullName"
+            name="fullName"
+            value={formData.fullName}
             onChange={handleChange}
             required
-            placeholder="Enter your name"
+            placeholder="Enter Full name"
           />
         </div>
 
-        <div>
+                <div>
           <label htmlFor="email">
             Email
           </label>
@@ -99,23 +105,38 @@ const FriendForm: React.FC = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            required
+            // required
             placeholder="Enter your email"
           />
         </div>
 
         <div>
-          <label htmlFor="citizenship">
-            Citizenship
+          <label htmlFor="phoneNumber">
+            PhoneNumber
+          </label>
+          <input
+            type="phoneNumber"
+            id="phoneNumber"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            // required
+            placeholder="Enter phoneNumber"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="identity">
+            identity
           </label>
           <input
             type="text"
-            id="citizenship"
-            name="citizenship"
-            value={formData.citizenship}
+            id="identity"
+            name="identity"
+            value={formData.identity}
             onChange={handleChange}
-            required
-            placeholder="Enter your citizenship"
+            // required
+            placeholder="Enter identity"
           />
         </div>
 
@@ -129,8 +150,22 @@ const FriendForm: React.FC = () => {
             name="placeOfMeeting"
             value={formData.placeOfMeeting}
             onChange={handleChange}
-            required
+            // required
             placeholder="Enter place of meeting"
+          />
+        </div>
+        <div>
+          <label htmlFor="notesAboutFriend">
+            Notes About Friend
+          </label>
+          <input
+            type="text"
+            id="notesAboutFriend"
+            name="notesAboutFriend"
+            value={formData.notesAboutFriend}
+            onChange={handleChange}
+            // required
+            placeholder="Enter notes about new friend"
           />
         </div>
 
