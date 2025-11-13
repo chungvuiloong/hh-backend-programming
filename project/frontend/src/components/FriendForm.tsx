@@ -54,6 +54,12 @@ const FriendForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!userId) {
+      console.error("User not authenticated");
+      return;
+    }
+
     await addFriend({
       userID: userId,
       friend: {
