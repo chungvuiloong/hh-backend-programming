@@ -25,6 +25,8 @@ const FriendsList = () => {
                             <div><strong>{friend.fullname}</strong></div>
                             {friend.email && <div>Email: {friend.email}</div>}
                             {friend.phoneNumber && <div>Phone: {friend.phoneNumber}</div>}
+                            <div>First met: {friend.firstMeet}</div>
+                            {friend.notesAboutFriend && <div>Notes: {friend.notesAboutFriend}</div>}
                             <button onClick={async () => {
                                 if (!userId) {
                                     console.error("User not authenticated");
