@@ -11,8 +11,9 @@ const FriendsList = () => {
         userId ? { userID: userId } : "skip"
     );
 
-    const data = isConnected ? friends : convexFriends;
-
+    // const data = isConnected ? convexFriends : friends;
+    const data = convexFriends; // Always use Convex data for consistency
+    
     return (
         <div>
             {Array.isArray(data) && data.length > 0 ? (
