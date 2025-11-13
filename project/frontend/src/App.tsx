@@ -2,10 +2,9 @@ import './App.css';
 import React from 'react';
 import LocationDisplay from './components/LocationDisplay';
 import Form from './components/FriendForm';
-import { useAuth, useUser, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+import { useUser, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '../convex/_generated/api';
-import { check } from 'prettier';
 
 function App() {
     // const { userId } = useAuth();

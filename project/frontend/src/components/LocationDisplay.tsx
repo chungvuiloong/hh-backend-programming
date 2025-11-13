@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { locationService } from '../services/locationService';
-import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
 
 const LocationDisplay: React.FC = () => {
-    const convexLocation = useQuery(api.locations.getLatestLocation);
     const [weatherData, setWeatherData] = useState<any>(null);
     const [location, setLocation] = useState<any | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    
 
     React.useEffect(() => {
         fetchLocation();
@@ -32,8 +30,6 @@ const LocationDisplay: React.FC = () => {
 
     if (loading) return <>Loading...</>
     if (error) return <>{error}</>
-
-    console.log(convexLocation);
 
     return (
         <div>

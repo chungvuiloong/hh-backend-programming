@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 const API_BASE_URL =
   process.env.NODE_ENV === 'production'
     ? 'https://friend-list-d047c88faa49.herokuapp.com'
