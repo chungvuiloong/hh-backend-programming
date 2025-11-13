@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as friends from "../friends.js";
 import type * as locations from "../locations.js";
 import type * as users from "../users.js";
 
@@ -26,6 +27,7 @@ import type {
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  friends: typeof friends;
   locations: typeof locations;
   users: typeof users;
 }>;
