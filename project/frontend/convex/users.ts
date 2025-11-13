@@ -51,6 +51,7 @@ export const addFriendToUser = mutation({
   args: {
     userID: v.string(),
     friend: v.object({
+        id: v.string(),
       fullname: v.string(),
       firstMeet: v.string(),
       identity: v.optional(v.string()),

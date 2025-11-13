@@ -5,6 +5,7 @@ import { api } from '../../convex/_generated/api';
 import { useAuth } from '@clerk/clerk-react';
 
 interface FriendFormData {
+    id: string;
     fullName: string;
     email?: string;
     identity?: string;
@@ -19,6 +20,7 @@ const FriendForm: React.FC = () => {
     const [city, setCity] = useState<string | null>(null);
     const [country, setCountry] = useState<string | null>(null);
     const [formData, setFormData] = useState<FriendFormData>({
+        id: '',
         fullName: '',
         email: '',
         identity: '',
@@ -63,6 +65,7 @@ const FriendForm: React.FC = () => {
     await addFriend({
       userID: userId,
       friend: {
+        id: crypto.randomUUID(),
         fullname: formData.fullName,
         firstMeet: formData.placeOfMeeting || '',
         identity: formData.identity,
@@ -73,6 +76,7 @@ const FriendForm: React.FC = () => {
     });
 
     setFormData({
+        id: '',
       fullName: '',
       email: '',
       identity: '',

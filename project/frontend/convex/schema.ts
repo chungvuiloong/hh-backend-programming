@@ -16,6 +16,7 @@ export default defineSchema({
     email: v.optional(v.string()),
     listOfFriends: v.array(
         v.object({
+            id: v.string(),
             fullname: v.string(),
             firstMeet: v.string(),
             identity: v.optional(v.string()),
