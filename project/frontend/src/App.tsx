@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import LocationDisplay from './components/LocationDisplay';
 import Form from './components/FriendForm';
+import FriendList from './components/FriendsList';
 import { useUser, SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '../convex/_generated/api';
@@ -41,6 +42,8 @@ function App() {
         }
     }, [isLoaded, isSignedIn, user, addNewUser, checkUser]);
 
+    // React.useEffect(() => {
+
     return (
         <div>
             <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
@@ -62,6 +65,10 @@ function App() {
         <LocationDisplay />
         <div>
           <Form />
+        </div>
+        <div>
+            <FriendList />
+
         </div>
     </div>
   );

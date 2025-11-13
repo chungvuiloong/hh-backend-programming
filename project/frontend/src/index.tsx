@@ -4,12 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ConvexReactClient } from 'convex/react';
-import { ConvexAuthProvider } from '@convex-dev/auth/react';
-// import { ConvexProviderWithAuth0 } from "convex/react-auth0";
-// import { Auth0Provider } from "@auth0/auth0-react";
-  import { ClerkProvider } from '@clerk/clerk-react'
-
-
+import { ConvexProviderWithClerk } from 'convex/react-clerk';
+import { ClerkProvider, useAuth } from '@clerk/clerk-react';
 
 const convex = new ConvexReactClient(process.env.REACT_APP_CONVEX_URL as string);
 
@@ -25,11 +21,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ConvexAuthProvider client={convex}>
-        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-            <App />
-        </ClerkProvider>
-    </ConvexAuthProvider>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+        <App />
+      </ConvexProviderWithClerk>
+    </ClerkProvider>
   </React.StrictMode>
 );
 
