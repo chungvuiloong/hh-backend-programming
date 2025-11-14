@@ -64,10 +64,10 @@ function App() {
             </div>
         <LocationDisplay />
         <div>
-          <Form />
+          {/* <Form /> */}
         </div>
         <div>
-            <FriendList />
+            {/* <FriendList /> */}
 
         </div>
     </div>
