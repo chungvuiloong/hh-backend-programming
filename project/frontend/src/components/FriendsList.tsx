@@ -12,7 +12,7 @@ const FriendsList = () => {
     );
     
     const deleteFriend = useMutation(api.friends.deleteFriend);
-    const updateFriend = useMutation(api.friends.updateFriend);
+    // const updateFriend = useMutation(api.friends.updateFriend);
 
     // const data = isConnected ? convexFriends : friends;
     const data = convexFriends; // Always use Convex data for consistency
@@ -41,7 +41,7 @@ const FriendsList = () => {
                             }}>
                                 Delete Friend
                             </button>
-                            <button onClick={async () => {
+                            {/* <button onClick={async () => {
                                 if (!userId) {
                                     console.error("User not authenticated");
                                     return;
@@ -50,7 +50,7 @@ const FriendsList = () => {
                                     userID: userId,
                                     friend: friend
                                 });
-                            }}>Edit</button>
+                            }}>Edit</button> */}
                         </li>
                     ))}
                 </ul>
