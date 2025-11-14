@@ -62,7 +62,7 @@ function App() {
     </SignedIn> */}
               </header>
             </div>
-        <LocationDisplay />
+        {/* <LocationDisplay /> */}
         <div>
           {/* <Form /> */}
         </div>
