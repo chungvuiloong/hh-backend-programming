@@ -5,13 +5,14 @@ import { api } from '../../convex/_generated/api';
 
 const FriendsList = () => {
     const { userId } = useAuth();
-    const { friends, isConnected, error } = useFriendsWebSocket(userId);
+    // const { friends, isConnected, error } = useFriendsWebSocket(userId);
 
     const convexFriends = useQuery(api.friends.getAllFriends,
         userId ? { userID: userId } : "skip"
     );
     
     const deleteFriend = useMutation(api.friends.deleteFriend);
+    const updateFriend = useMutation(api.friends.updateFriend);
 
     // const data = isConnected ? convexFriends : friends;
     const data = convexFriends; // Always use Convex data for consistency
@@ -26,6 +27,7 @@ const FriendsList = () => {
                             {friend.email && <div>Email: {friend.email}</div>}
                             {friend.phoneNumber && <div>Phone: {friend.phoneNumber}</div>}
                             <div>First met: {friend.firstMeet}</div>
+                            {friend.identity && <div>Identity: {friend.identity}</div>}
                             {friend.notesAboutFriend && <div>Notes: {friend.notesAboutFriend}</div>}
                             <button onClick={async () => {
                                 if (!userId) {
@@ -39,6 +41,16 @@ const FriendsList = () => {
                             }}>
                                 Delete Friend
                             </button>
+                            <button onClick={async () => {
+                                if (!userId) {
+                                    console.error("User not authenticated");
+                                    return;
+                                }
+                                await updateFriend({
+                                    userID: userId,
+                                    friend: friend
+                                });
+                            }}>Edit</button>
                         </li>
                     ))}
                 </ul>
