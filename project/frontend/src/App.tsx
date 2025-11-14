@@ -54,21 +54,20 @@ function App() {
                 {/* <p>Signed in as {user?.fullName}</p>
                 <button onClick={callApi}>Call API</button> */}
           <header>
-    {/* <SignedOut>
+    <SignedOut>
       <SignInButton />
     </SignedOut>
     <SignedIn>
       <UserButton />
-    </SignedIn> */}
+    </SignedIn>
               </header>
             </div>
-        {/* <LocationDisplay /> */}
+        <LocationDisplay />
         <div>
-          {/* <Form /> */}
+          <Form />
         </div>
         <div>
-            {/* <FriendList /> */}
-
+            <FriendList />
         </div>
     </div>
   );
