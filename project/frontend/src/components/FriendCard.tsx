@@ -14,7 +14,7 @@ const InfoField = ({ icon, label, value }) => (
 
 const FriendCard = ({ friend, userId, deleteFriend }) => {
     return (
-        <li className='bg-white border-2 border-zinc-700 rounded-lg p-5 max-w-[320px]'>
+        <li className='bg-white border-2 border-zinc-700 rounded-lg p-5 max-w-full md:max-w-[320px]'>
             <div className='mb-5 pb-4 border-b-2 border-zinc-500'>
                 <h3 className='text-lg font-medium text-zinc-900 mb-1'>{friend?.fullname || "Unknown"}</h3>
             </div>
