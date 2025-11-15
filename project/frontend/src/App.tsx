@@ -76,7 +76,7 @@ function App() {
                 <Form />
                 </div>
                 <div className='p-4'>
-                    <FriendList />
+                    {isSignedIn ? <FriendList /> : <p>Sign in to manage your friends list.</p>}
                 </div>
             </div>
         </div>
