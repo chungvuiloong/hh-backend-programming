@@ -2,6 +2,7 @@ import { useAuth, } from '@clerk/clerk-react';
 import { useFriendsWebSocket } from '../hooks/useFriendsWebSocket';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
+import FriendCard from '../components/FriendCard';
 
 const FriendsList = () => {
     const { userId } = useAuth();
@@ -22,36 +23,12 @@ const FriendsList = () => {
             {Array.isArray(data) && data.length > 0 ? (
                 <ul>
                     {data.map((friend, index) => (
-                        <li key={index}>
-                            <div><strong>{friend.fullname}</strong></div>
-                            {friend.email && <div>Email: {friend.email}</div>}
-                            {friend.phoneNumber && <div>Phone: {friend.phoneNumber}</div>}
-                            <div>First met: {friend.firstMeet}</div>
-                            {friend.identity && <div>Identity: {friend.identity}</div>}
-                            {friend.notesAboutFriend && <div>Notes: {friend.notesAboutFriend}</div>}
-                            <button onClick={async () => {
-                                if (!userId) {
-                                    console.error("User not authenticated");
-                                    return;
-                                }
-                                await deleteFriend({
-                                    userID: userId,
-                                    id: friend.id
-                                });
-                            }}>
-                                Delete Friend
-                            </button>
-                            {/* <button onClick={async () => {
-                                if (!userId) {
-                                    console.error("User not authenticated");
-                                    return;
-                                }
-                                await updateFriend({
-                                    userID: userId,
-                                    friend: friend
-                                });
-                            }}>Edit</button> */}
-                        </li>
+                        <FriendCard
+                            key={friend.id}
+                            friend={friend}
+                            userId={userId || ''}
+                            deleteFriend={deleteFriend}
+                        />
                     ))}
                 </ul>
             ) : (
