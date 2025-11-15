@@ -72,11 +72,12 @@ function App() {
             </header>
             <div className='mt-5 flex flex-col gap-5'>
                 <LocationDisplay />
+                {isSignedIn ? null : "Sign in to add new friends."}
                 <div>
-                <Form />
+                    {isSignedIn ? <Form /> : ""}
                 </div>
                 <div className='p-4'>
-                    {isSignedIn ? <FriendList /> : <p>Sign in to manage your friends list.</p>}
+                    {isSignedIn ? <FriendList /> : ""}
                 </div>
             </div>
         </div>
