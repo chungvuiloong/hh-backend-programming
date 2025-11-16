@@ -1,20 +1,8 @@
 import React, { useState } from 'react';
 import { locationService } from '../services/locationService';
-
-const Divider = () => <div className="h-6 w-px bg-slate-300" />;
-
-const Icon = ({ path, className = "w-5 h-5" }: { path: string; className?: string }) => (
-    <svg className={`${className} text-blue-600`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={path} />
-    </svg>
-);
-
-const InfoItem = ({ icon, text }: { icon: string; text: string }) => (
-    <div className="flex items-center gap-2">
-        <Icon path={icon} />
-        <span className="font-semibold text-slate-900">{text}</span>
-    </div>
-);
+import Divider from './common/Divider';
+import Icon from './common/Icon';
+import InfoItem from './common/InfoItem';
 
 const LocationDisplay: React.FC = () => {
     const [weatherData, setWeatherData] = useState<any>(null);
