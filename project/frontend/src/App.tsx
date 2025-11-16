@@ -36,7 +36,15 @@ function App() {
                 <LocationDisplay />
                 {isSignedIn ? null : "Sign in to add new friends."}
                 <div>
-                    {isSignedIn ? <Form formAction={formAction} setFormAction={setFormAction} formData={formData} setFormData={setFormData} /> : ""}
+                    
+                    {isSignedIn ? 
+                        <Form 
+                            formAction={formAction} 
+                            setFormAction={setFormAction} 
+                            formData={formData} 
+                            setFormData={setFormData} /> 
+                        : ""
+                    }
                 </div>
                 <div className='p-4'>
                     {isSignedIn ? <FriendList /> : ""}
