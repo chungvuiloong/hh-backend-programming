@@ -55,7 +55,7 @@ function App() {
                     <span>{convexFriends ? convexFriends.length : 0} {convexFriends && convexFriends.length > 1 ? "friends" : "friend"}</span>
                 </div>
 
-                <div>
+                <div className='flex items-center'>
                     <SignedOut>
                         <div className='px-8 py-4 flex items-center gap-2 border-2 border-zinc-700 rounded-full'>
                             <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
