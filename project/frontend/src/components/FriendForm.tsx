@@ -4,30 +4,24 @@ import { useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { useAuth } from '@clerk/clerk-react';
 
-interface FriendFormData {
-    id: string;
-    fullName: string;
-    email?: string;
-    identity?: string;
-    placeOfMeeting?: string;
-    phoneNumber?: string;
-    notesAboutFriend?: string;
-}
-
-const FriendForm: React.FC = () => {
+const FriendForm: React.FC<{ 
+    formData: any;
+    setFormData: any;
+    formAction: 'add' | 'edit'; 
+    setFormAction: React.Dispatch<React.SetStateAction<'add' | 'edit'>> }> = ({ formData, setFormData, formAction, setFormAction }) => {
     const { userId } = useAuth();
     const addFriend = useMutation(api.users.addFriendToUser);
     const [city, setCity] = useState<string | null>(null);
     const [country, setCountry] = useState<string | null>(null);
-    const [formData, setFormData] = useState<FriendFormData>({
-        id: '',
-        fullName: '',
-        email: '',
-        identity: '',
-        placeOfMeeting: `${city || 'Unknown'}, ${country || 'Unknown'}`.trim(),
-        phoneNumber: '',
-        notesAboutFriend: ''
-    });
+    // const [formData, setFormData] = useState<FriendFormData>({
+    //     id: '',
+    //     fullName: '',
+    //     email: '',
+    //     identity: '',
+    //     placeOfMeeting: `${city || 'Unknown'}, ${country || 'Unknown'}`.trim(),
+    //     phoneNumber: '',
+    //     notesAboutFriend: ''
+    // });
 
     const getCityAndCountry = async () => {
         const city = await locationService.getCity();
