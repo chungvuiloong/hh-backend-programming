@@ -23,6 +23,9 @@ function App() {
 
     const addNewUser = useMutation(api.users.addNewUser);
     const checkUser = useQuery(api.users.checkUser, { userID: user?.id || '' });
+    const convexFriends = useQuery(api.friends.getAllFriends,
+        user?.id ? { userID: user.id } : "skip"
+    );
 
     React.useEffect(() => {
         const registerUser = async () => {
@@ -42,14 +45,16 @@ function App() {
         }
     }, [isLoaded, isSignedIn, user, addNewUser, checkUser]);
 
-    // React.useEffect(() => {
-
     return (
         <div className="container mx-auto p-4">
             <header className='py-5 border-b-2 border-slate-700 flex flex-row justify-between'>
-                <h1 className="text-4xl font-bold text-center text-gray-800">
-                    Friend List
-                </h1>
+                <div>
+                    <h1 className="text-4xl font-bold text-center text-gray-800">
+                        Friend List
+                    </h1>
+                    <span>{convexFriends ? convexFriends.length : 0} {convexFriends && convexFriends.length > 1 ? "friends" : "friend"}</span>
+                </div>
+
                 <div>
                     <SignedOut>
                         <div className='px-8 py-4 flex items-center gap-2 border-2 border-zinc-700 rounded-full'>
