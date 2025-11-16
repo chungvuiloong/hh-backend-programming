@@ -5,6 +5,7 @@ import Form from './components/FriendForm';
 import FriendList from './components/FriendsList';
 import { useUser } from '@clerk/clerk-react';
 import Header from './components/layout/Header';
+import Button from './components/common/Button';
 
 interface FriendFormData {
     id: string;
@@ -36,7 +37,9 @@ function App() {
                 <LocationDisplay />
                 {isSignedIn ? null : "Sign in to add new friends."}
                 <div>
-                    
+                    <div>
+                        <Button onClick={() => console.log("test")}>Add Friend</Button>
+                    </div>
                     {isSignedIn ? 
                         <Form 
                             formAction={formAction} 
