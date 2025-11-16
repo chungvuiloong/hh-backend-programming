@@ -12,13 +12,15 @@ const Button = ({ onClick, loading, path, children }: ButtonProps) => {
         <button
             onClick={onClick}
             disabled={loading || false}
-            className="ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            className="flex flex-row px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed  items-center gap-2"
         >
-            <Icon
-                path={path}
-                className="w-4 h-4 text-white"
-            />
-            {children}
+            {path && (
+                <Icon
+                    path={path}
+                    className="text-white"
+                />
+            )}
+            <span className="w-auto">{children}</span>
         </button>
     );
 };
