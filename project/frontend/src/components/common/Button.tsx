@@ -1,10 +1,10 @@
 import React from 'react';
 import Icon from './Icon';
 
-const Button = ({ fetchLocation, loading }) => {
+const Button = ({ onClick, loading }) => {
     return (
         <button
-            onClick={fetchLocation}
+            onClick={onClick}
             disabled={loading}
             className="ml-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
@@ -17,4 +17,4 @@ const Button = ({ fetchLocation, loading }) => {
     );
 };
 
-export default Button;
+export default React.memo(Button);
