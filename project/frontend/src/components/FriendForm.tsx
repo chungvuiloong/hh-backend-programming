@@ -90,7 +90,7 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
                 },
                 body: JSON.stringify({
                     id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
-                    fullname: formData.fullName + "Java",
+                    fullname: formData.fullName,
                     firstMeet: formData.placeOfMeeting || '',
                     identity: formData.identity,
                     email: formData.email,
