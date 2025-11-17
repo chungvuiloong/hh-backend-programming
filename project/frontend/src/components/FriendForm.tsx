@@ -20,7 +20,7 @@ interface FriendFormProps {
 const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormData, formAction, setFormAction }) => {
     const { userId } = useAuth();
     // const addFriend = useMutation(api.users.addFriendToUser);
-    const updateFriend = useMutation(api.friends.updateFriend);
+    // const updateFriend = useMutation(api.friends.updateFriend);
     const [city, setCity] = useState<string | null>(null);
     const [country, setCountry] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,6 +67,8 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
             return;
         }
 
+        const url = process.env.NODE_ENV === 'production' ? 'https://friend-list-d047c88faa49.herokuapp.com' : 'http://localhost:8080';
+
         setIsSubmitting(true);
         if (formAction === 'add') {
                 formData.id = crypto.randomUUID();
@@ -84,9 +86,10 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
                 //     //         notesAboutFriend: formData.notesAboutFriend
                 //     //     }
                 //     // });
-
+                
+// https://friend-list-d047c88faa49.herokuapp.com/
                 // This sends data to the Java backend
-                const response = await fetch(`http://localhost:8080/convex/friend/${userId}`, {
+                const response = await fetch(`${url}/convex/friend/${userId}`, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
@@ -127,7 +130,7 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
                 //     });
 
                 // This sends updated data to the Java backend
-                const response = await fetch(`http://localhost:8080/convex/update/friend/${userId}`, {
+                const response = await fetch(`${url}/convex/update/friend/${userId}`, {
                     method: 'POST',
                     headers: {
                     'Content-Type': 'application/json',
