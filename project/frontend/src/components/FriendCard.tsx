@@ -1,6 +1,8 @@
 import React from 'react';
 import Icon from './common/Icon';
 import FriendFormData from './interface/FriendFormData';
+import { api } from '../../convex/_generated/api';
+import { useMutation } from 'convex/react';
 
 const InfoField = ({ icon, label, value }: { icon: string; label: string; value: string | null | undefined }) => (
     <div className='flex items-center gap-3'>
@@ -21,6 +23,7 @@ interface FriendCardProps {
 }
 
 const FriendCard = ({ friend, userId, deleteFriend, toggleModal, setFormData }: FriendCardProps) => {
+    const updateFriend = useMutation(api.friends.updateFriend);
     return (
         <li className='bg-white border-2 border-zinc-700 rounded-lg p-5 max-w-full md:max-w-[320px]'>
             <div className='mb-5 pb-4 border-b-2 border-zinc-500'>
@@ -68,7 +71,7 @@ const FriendCard = ({ friend, userId, deleteFriend, toggleModal, setFormData }: 
                             return;
                         }
                         toggleModal("edit");
-                        await setFormData({
+                        setFormData({
                             id: friend.id,
                             fullName: friend.fullname || '',
                             email: friend.email || '',
@@ -77,11 +80,6 @@ const FriendCard = ({ friend, userId, deleteFriend, toggleModal, setFormData }: 
                             phoneNumber: friend.phoneNumber || '',
                             notesAboutFriend: friend.notesAboutFriend || ''
                         });
-
-                        // await updateFriend({
-                        //     userID: userId,
-                        //     friend: friend
-                        // });
                     }}
                     className='w-1/2 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-zinc-800 hover:bg-zinc-900 rounded-lg transition-colors'
                 >
