@@ -15,7 +15,7 @@ interface FriendCardProps {
     friend: any;
     userId: string | null;
     deleteFriend: (params: { userID: string; id: string }) => void;
-    toggleModal: (action?: string, friend?: any) => void;
+    toggleModal: (action?: 'add' | 'edit') => void;
 }
 
 const FriendCard = ({ friend, userId, deleteFriend, toggleModal }: FriendCardProps) => {
