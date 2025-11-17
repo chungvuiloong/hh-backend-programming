@@ -1,10 +1,9 @@
 import React from 'react';
+import Icon from './common/Icon';
 
 const InfoField = ({ icon, label, value }) => (
     <div className='flex items-center gap-3'>
-        <svg className='w-4 h-4 text-zinc-400 flex-shrink-0' fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} />
-        </svg>
+        <Icon path={icon} />
         <div className='flex-1'>
             <p className='text-xs text-zinc-500 mb-0.5'>{label}</p>
             <p className='text-sm text-zinc-700'>{value || "N/A"}</p>
