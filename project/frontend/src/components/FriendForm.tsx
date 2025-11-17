@@ -66,30 +66,31 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
         }
 
         setIsSubmitting(true);
+        if (formAction === 'add') {
+                formData.id = crypto.randomUUID();
+                try {
+                //     // This sends data to the Convex backend
+                //     // await addFriend({
+                //     //     userID: userId,
+                //     //     friend: {
+                //     //         id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
+                //     //         fullname: formData.fullName,
+                //     //         firstMeet: formData.placeOfMeeting || '',
+                //     //         identity: formData.identity,
+                //     //         email: formData.email,
+                //     //         phoneNumber: formData.phoneNumber,
+                //     //         notesAboutFriend: formData.notesAboutFriend
+                //     //     }
+                //     // });
 
-        try {
-            // This sends data to the Convex backend
-            // await addFriend({
-            //     userID: userId,
-            //     friend: {
-            //         id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
-            //         fullname: formData.fullName,
-            //         firstMeet: formData.placeOfMeeting || '',
-            //         identity: formData.identity,
-            //         email: formData.email,
-            //         phoneNumber: formData.phoneNumber,
-            //         notesAboutFriend: formData.notesAboutFriend
-            //     }
-            // });
-
-            // This sends data to the Java backend
-            const response = await fetch(`http://localhost:8080/convex/friend/${userId}`, {
+                // This sends data to the Java backend
+                const response = await fetch(`http://localhost:8080/convex/friend/${userId}`, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
+                    id: crypto.randomUUID(),
                     fullname: formData.fullName,
                     firstMeet: formData.placeOfMeeting || '',
                     identity: formData.identity,
@@ -100,23 +101,70 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
             }); 
             const result = await response.json();
             console.log('java', result);
-
-            setFormData({
-                id: '',
-                fullName: '',
-                email: '',
-                identity: '',
-                placeOfMeeting: `${city}, ${country}`.trim(),
-                phoneNumber: '',
-                notesAboutFriend: ''
-            });
-
-            toggleModal();
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to save friend');
-        } finally {
-            setIsSubmitting(false);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save friend');
+            } finally {
+                setIsSubmitting(false);
+            }
         }
+
+        if (formAction === 'edit') {
+            console.log("edit");
+        }
+
+        handleClose();
+        
+
+        // try {
+        //     // This sends data to the Convex backend
+        //     // await addFriend({
+        //     //     userID: userId,
+        //     //     friend: {
+        //     //         id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
+        //     //         fullname: formData.fullName,
+        //     //         firstMeet: formData.placeOfMeeting || '',
+        //     //         identity: formData.identity,
+        //     //         email: formData.email,
+        //     //         phoneNumber: formData.phoneNumber,
+        //     //         notesAboutFriend: formData.notesAboutFriend
+        //     //     }
+        //     // });
+
+        //     // This sends data to the Java backend
+        //     const response = await fetch(`http://localhost:8080/convex/friend/${userId}`, {
+        //         method: 'POST',
+        //         headers: {
+        //         'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
+        //             fullname: formData.fullName,
+        //             firstMeet: formData.placeOfMeeting || '',
+        //             identity: formData.identity,
+        //             email: formData.email,
+        //             phoneNumber: formData.phoneNumber,
+        //             notesAboutFriend: formData.notesAboutFriend
+        //         }),
+        //     }); 
+        //     const result = await response.json();
+        //     console.log('java', result);
+
+        //     setFormData({
+        //         id: '',
+        //         fullName: '',
+        //         email: '',
+        //         identity: '',
+        //         placeOfMeeting: `${city}, ${country}`.trim(),
+        //         phoneNumber: '',
+        //         notesAboutFriend: ''
+        //     });
+
+        //     toggleModal();
+        // } catch (err) {
+        //     setError(err instanceof Error ? err.message : 'Failed to save friend');
+        // } finally {
+        //     setIsSubmitting(false);
+        // }
     };
 
     const handleClose = () => {
