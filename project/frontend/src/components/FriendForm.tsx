@@ -68,18 +68,38 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
         setIsSubmitting(true);
 
         try {
-            await addFriend({
-                userID: userId,
-                friend: {
+            // This sends data to the Convex backend
+            // await addFriend({
+            //     userID: userId,
+            //     friend: {
+            //         id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
+            //         fullname: formData.fullName,
+            //         firstMeet: formData.placeOfMeeting || '',
+            //         identity: formData.identity,
+            //         email: formData.email,
+            //         phoneNumber: formData.phoneNumber,
+            //         notesAboutFriend: formData.notesAboutFriend
+            //     }
+            // });
+
+            // This sends data to the Java backend
+            const response = await fetch(`http://localhost:8080/convex/friend/${userId}`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
                     id: formAction === 'edit' ? formData.id : crypto.randomUUID(),
-                    fullname: formData.fullName,
+                    fullname: formData.fullName + "Java",
                     firstMeet: formData.placeOfMeeting || '',
                     identity: formData.identity,
                     email: formData.email,
                     phoneNumber: formData.phoneNumber,
                     notesAboutFriend: formData.notesAboutFriend
-                }
-            });
+                }),
+            }); 
+            const result = await response.json();
+            console.log('java', result);
 
             setFormData({
                 id: '',
