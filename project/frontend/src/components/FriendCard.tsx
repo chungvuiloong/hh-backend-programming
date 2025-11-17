@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from './common/Icon';
 
-const InfoField = ({ icon, label, value }) => (
+const InfoField = ({ icon, label, value }: { icon: string; label: string; value: string | null | undefined }) => (
     <div className='flex items-center gap-3'>
         <Icon path={icon} />
         <div className='flex-1'>
