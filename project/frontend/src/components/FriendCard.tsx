@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from './common/Icon';
+import FriendFormData from './interface/FriendFormData';
 
 const InfoField = ({ icon, label, value }: { icon: string; label: string; value: string | null | undefined }) => (
     <div className='flex items-center gap-3'>
@@ -16,9 +17,10 @@ interface FriendCardProps {
     userId: string | null;
     deleteFriend: (params: { userID: string; id: string }) => void;
     toggleModal: (action?: 'add' | 'edit') => void;
+    setFormData: React.Dispatch<React.SetStateAction<FriendFormData>>;
 }
 
-const FriendCard = ({ friend, userId, deleteFriend, toggleModal }: FriendCardProps) => {
+const FriendCard = ({ friend, userId, deleteFriend, toggleModal, setFormData }: FriendCardProps) => {
     return (
         <li className='bg-white border-2 border-zinc-700 rounded-lg p-5 max-w-full md:max-w-[320px]'>
             <div className='mb-5 pb-4 border-b-2 border-zinc-500'>
@@ -61,11 +63,21 @@ const FriendCard = ({ friend, userId, deleteFriend, toggleModal }: FriendCardPro
             <div className='flex gap-3 pt-4 border-t border-zinc-200'>
                 <button
                     onClick={async () => {
-                        toggleModal("edit");
                         if (!userId) {
                             console.error("User not authenticated");
                             return;
                         }
+                        toggleModal("edit");
+                        await setFormData({
+                            id: friend.id,
+                            fullName: friend.fullname || '',
+                            email: friend.email || '',
+                            identity: friend.identity || '',
+                            placeOfMeeting: friend.firstMeet || '',
+                            phoneNumber: friend.phoneNumber || '',
+                            notesAboutFriend: friend.notesAboutFriend || ''
+                        });
+
                         // await updateFriend({
                         //     userID: userId,
                         //     friend: friend

@@ -51,7 +51,7 @@ function App() {
                         </div>
                     </div>
                     <div className='p-4'>
-                        {isSignedIn ? <FriendList toggleModal={toggleModal} /> : ""}
+                        {isSignedIn ? <FriendList toggleModal={toggleModal} setFormData={setFormData} /> : ""}
                     </div>
                 </div>
             </div>

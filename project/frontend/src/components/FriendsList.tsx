@@ -3,8 +3,9 @@ import { useFriendsWebSocket } from '../hooks/useFriendsWebSocket';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import FriendCard from '../components/FriendCard';
+import FriendFormData from './interface/FriendFormData';
 
-const FriendsList = ({ toggleModal }: { toggleModal: (action?: 'add' | 'edit' | undefined) => void }) => {
+const FriendsList = ({ toggleModal, setFormData }: { toggleModal: (action?: 'add' | 'edit' | undefined) => void, setFormData: React.Dispatch<React.SetStateAction<FriendFormData>> }) => {
     const { userId } = useAuth();
     // const { friends, isConnected, error } = useFriendsWebSocket(userId);
 
@@ -29,6 +30,7 @@ const FriendsList = ({ toggleModal }: { toggleModal: (action?: 'add' | 'edit' | 
                             userId={userId || ''}
                             deleteFriend={deleteFriend}
                             toggleModal={toggleModal}
+                            setFormData={setFormData}
                         />
                     ))
                 ) : (
