@@ -6,6 +6,8 @@ import { useAuth } from '@clerk/clerk-react';
 import Button from './common/Button';
 import FormInput from './common/FormInput';
 
+import FriendFormData from './interface/FriendFormData';        
+
 const FriendForm: React.FC<{
     toggleModal: () => void;
     formData: any;
@@ -27,7 +29,7 @@ const FriendForm: React.FC<{
             setCity(city);
             setCountry(country);
             if (!formData.placeOfMeeting) {
-                setFormData(prev => ({
+                setFormData((prev: FriendFormData) => ({
                     ...prev,
                     placeOfMeeting: `${city}, ${country}`.trim()
                 }));

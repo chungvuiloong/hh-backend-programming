@@ -6,16 +6,7 @@ import FriendList from './components/FriendsList';
 import { useUser } from '@clerk/clerk-react';
 import Header from './components/layout/Header';
 import Button from './components/common/Button';
-
-interface FriendFormData {
-    id: string;
-    fullName: string;
-    email?: string;
-    identity?: string;
-    placeOfMeeting?: string;
-    phoneNumber?: string;
-    notesAboutFriend?: string;
-}
+import FriendFormData from './components/interface/FriendFormData';
 
 function App() {
     const { isSignedIn } = useUser();
