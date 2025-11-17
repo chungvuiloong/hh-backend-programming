@@ -12,7 +12,7 @@ const InfoField = ({ icon, label, value }) => (
     </div>
 );
 
-const FriendCard = ({ friend, userId, deleteFriend }) => {
+const FriendCard = ({ friend, userId, deleteFriend, toggleModal }) => {
     return (
         <li className='bg-white border-2 border-zinc-700 rounded-lg p-5 max-w-full md:max-w-[320px]'>
             <div className='mb-5 pb-4 border-b-2 border-zinc-500'>
@@ -55,6 +55,7 @@ const FriendCard = ({ friend, userId, deleteFriend }) => {
             <div className='flex gap-3 pt-4 border-t border-zinc-200'>
                 <button
                     onClick={async () => {
+                        toggleModal("edit");
                         if (!userId) {
                             console.error("User not authenticated");
                             return;

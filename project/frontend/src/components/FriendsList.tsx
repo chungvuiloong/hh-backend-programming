@@ -4,7 +4,7 @@ import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import FriendCard from '../components/FriendCard';
 
-const FriendsList = () => {
+const FriendsList = ({ toggleModal }) => {
     const { userId } = useAuth();
     // const { friends, isConnected, error } = useFriendsWebSocket(userId);
 
@@ -20,20 +20,21 @@ const FriendsList = () => {
     
     return (
         <div>
-            {Array.isArray(data) && data.length > 0 ? (
-                <ul>
-                    {data.map((friend, index) => (
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {Array.isArray(data) && data.length > 0 ? (
+                    data.map((friend, index) => (
                         <FriendCard
                             key={friend.id}
                             friend={friend}
                             userId={userId || ''}
                             deleteFriend={deleteFriend}
+                            toggleModal={toggleModal}
                         />
-                    ))}
-                </ul>
-            ) : (
-                <p>No friends found.</p>
-            )}
+                    ))
+                ) : (
+                    <p>No friends found.</p>
+                )}
+            </ul>
         </div>
     );
 };
