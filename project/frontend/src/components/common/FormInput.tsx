@@ -1,12 +1,12 @@
 import React from 'react';
 
 interface FormInputProps {
-  label: string;
-  name: string;
-  value: string;
+  label: string | undefined;
+  name: string | undefined;
+  value: string | number | readonly string[] | undefined;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type?: string;
-  placeholder?: string;
+  type?: string | undefined;
+  placeholder?: string | undefined;
   required?: boolean;
 }
 
