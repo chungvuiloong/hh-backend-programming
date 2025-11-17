@@ -8,12 +8,15 @@ import FormInput from './common/FormInput';
 
 import FriendFormData from './interface/FriendFormData';        
 
-const FriendForm: React.FC<{
-    toggleModal: () => void;
-    formData: any;
-    setFormData: any;
+interface FriendFormProps {
+    toggleModal: (action?: 'add' | 'edit') => void;
+    formData: FriendFormData;
+    setFormData: React.Dispatch<React.SetStateAction<FriendFormData>>;
     formAction: 'add' | 'edit';
-    setFormAction: React.Dispatch<React.SetStateAction<'add' | 'edit'>> }> = ({ toggleModal, formData, setFormData, formAction, setFormAction }) => {
+    setFormAction: React.Dispatch<React.SetStateAction<'add' | 'edit'>>;
+}
+
+const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormData, formAction, setFormAction }) => {
     const { userId } = useAuth();
     const addFriend = useMutation(api.users.addFriendToUser);
     const [city, setCity] = useState<string | null>(null);
