@@ -4,7 +4,7 @@ import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import FriendCard from '../components/FriendCard';
 
-const FriendsList = ({ toggleModal }) => {
+const FriendsList = ({ toggleModal }: { toggleModal: (action?: 'add' | 'edit' | undefined) => void }) => {
     const { userId } = useAuth();
     // const { friends, isConnected, error } = useFriendsWebSocket(userId);
 

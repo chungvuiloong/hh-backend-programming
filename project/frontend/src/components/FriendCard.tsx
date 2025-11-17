@@ -11,7 +11,14 @@ const InfoField = ({ icon, label, value }: { icon: string; label: string; value:
     </div>
 );
 
-const FriendCard = ({ friend, userId, deleteFriend, toggleModal }) => {
+interface FriendCardProps {
+    friend: any;
+    userId: string | null;
+    deleteFriend: (params: { userID: string; id: string }) => void;
+    toggleModal: (action?: string, friend?: any) => void;
+}
+
+const FriendCard = ({ friend, userId, deleteFriend, toggleModal }: FriendCardProps) => {
     return (
         <li className='bg-white border-2 border-zinc-700 rounded-lg p-5 max-w-full md:max-w-[320px]'>
             <div className='mb-5 pb-4 border-b-2 border-zinc-500'>
@@ -78,7 +85,7 @@ const FriendCard = ({ friend, userId, deleteFriend, toggleModal }) => {
                             return;
                         }
                         if (window.confirm(`Are you sure you want to delete ${friend?.fullname || 'this friend'}?`)) {
-                            await deleteFriend({
+                            deleteFriend({
                                 userID: userId,
                                 id: friend.id
                             });
