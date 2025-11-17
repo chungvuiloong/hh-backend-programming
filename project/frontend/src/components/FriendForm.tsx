@@ -112,19 +112,38 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
 
         if (formAction === 'edit') {
             try {
-                   await updateFriend({
-                        userID: userId,
-                        friend: {
-                            id: formData.id,
-                            fullname: formData.fullName,
-                            firstMeet: formData.placeOfMeeting || '',
-                            identity: formData.identity,
-                            email: formData.email,
-                            phoneNumber: formData.phoneNumber,
-                            notesAboutFriend: formData.notesAboutFriend
-                        }
-                    });
-                console.log("edit");
+                // This sends data to the Convex backend from the mutation in frontend
+                //    await updateFriend({
+                //         userID: userId,
+                //         friend: {
+                //             id: formData.id,
+                //             fullname: formData.fullName,
+                //             firstMeet: formData.placeOfMeeting || '',
+                //             identity: formData.identity,
+                //             email: formData.email,
+                //             phoneNumber: formData.phoneNumber,
+                //             notesAboutFriend: formData.notesAboutFriend
+                //         }
+                //     });
+
+                // This sends updated data to the Java backend
+                const response = await fetch(`http://localhost:8080/convex/update/friend/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: formData.id,
+                        fullname: formData.fullName,
+                        firstMeet: formData.placeOfMeeting || '',
+                        identity: formData.identity,
+                        email: formData.email,
+                        phoneNumber: formData.phoneNumber,
+                        notesAboutFriend: formData.notesAboutFriend
+                    }),
+                }); 
+                const result = await response.json();
+                console.log('java', result);
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Failed to update friend');
             } finally {
@@ -133,7 +152,6 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
         }
 
         handleClose();
-        
 
         // try {
         //     // This sends data to the Convex backend
