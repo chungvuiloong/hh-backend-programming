@@ -46,7 +46,7 @@ const FriendForm: React.FC<{
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.currentTarget.name;
         const value = e.currentTarget.value;
-        setFormData(prev => ({
+        setFormData((prev: FriendFormData) => ({
             ...prev,
             [name]: value
         }));
