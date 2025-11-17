@@ -7,6 +7,7 @@ import Button from './common/Button';
 import FormInput from './common/FormInput';
 
 import FriendFormData from './interface/FriendFormData';        
+// import { updateFriend } from '../../convex/friends';
 
 interface FriendFormProps {
     toggleModal: (action?: 'add' | 'edit') => void;
@@ -18,7 +19,8 @@ interface FriendFormProps {
 
 const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormData, formAction, setFormAction }) => {
     const { userId } = useAuth();
-    const addFriend = useMutation(api.users.addFriendToUser);
+    // const addFriend = useMutation(api.users.addFriendToUser);
+    const updateFriend = useMutation(api.friends.updateFriend);
     const [city, setCity] = useState<string | null>(null);
     const [country, setCountry] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -109,7 +111,25 @@ const FriendForm: React.FC<FriendFormProps> = ({ toggleModal, formData, setFormD
         }
 
         if (formAction === 'edit') {
-            console.log("edit");
+            try {
+                   await updateFriend({
+                        userID: userId,
+                        friend: {
+                            id: formData.id,
+                            fullname: formData.fullName,
+                            firstMeet: formData.placeOfMeeting || '',
+                            identity: formData.identity,
+                            email: formData.email,
+                            phoneNumber: formData.phoneNumber,
+                            notesAboutFriend: formData.notesAboutFriend
+                        }
+                    });
+                console.log("edit");
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to update friend');
+            } finally {
+                setIsSubmitting(false);
+            }
         }
 
         handleClose();
