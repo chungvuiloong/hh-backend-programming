@@ -298,8 +298,7 @@ SITE_URL=your_site_url
 The backend includes comprehensive unit tests for controllers and services using JUnit 5 and Spring Boot Test.
 
 **Test Files:**
-- `UserControllerTest.java` - 12 tests for REST API endpoints
-- `ConvexServiceTest.java` - 10 tests for Convex service integration
+- `UserControllerTest.java`
 
 **Run All Tests:**
 ```bash
