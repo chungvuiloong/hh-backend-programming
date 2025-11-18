@@ -389,3 +389,9 @@ For issues or questions, please refer to the documentation:
 - [Convex Documentation](https://docs.convex.dev/)
 - [Clerk Documentation](https://clerk.com/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+
+## Acknowledgments
+
+Special thanks to our beta testers for their feedback and support:
+- @juk** jus**
+- @ma** os*** 
