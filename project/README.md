@@ -1,6 +1,10 @@
 # Friendlist
 
-> A full-stack application with a React frontend and Java Spring Boot backend. It helps users to create a list of friends, track where they meet, and make notes about new friends.
+> A full-stack application CRUD with a React frontend and Java Spring Boot backend. It helps users to create a list of friends, track where they meet, and make notes about new friends.
+
+*Important* 
+The frontend it is only READ
+The backend it is CREATE, UPDATE, DELETE
 
 **Live Demos:**
 - Frontend: [https://project-frontend-ten-cyan.vercel.app/](https://project-frontend-ten-cyan.vercel.app/)
