@@ -324,12 +324,12 @@ mvn clean test
 ## Challenges and Solutions
 
 ### Frontend 
-**Challenge: Database didn't work locally every noe and then**
+**Challenge: Database didn't work locally every now and then**
 - The local front deploy didn't always work and didn't add, update, delete. 
 - Solution: I found the issue where i didnt code it correctly to use the java heroku url. 
 
 
-Porblem: This is the previous code.
+Problem: This is the previous code.
 ```
 const response = await fetch(`http://localhost:8080/convex/friend/${userId}
 const response = await fetch(`http://localhost:8080/convex/update/friend/${userId}
@@ -342,7 +342,7 @@ const response = await fetch(`${url}/convex/update/friend/${userId}`,
 ```
 
 **Challenge: Calling API in frontend**
-- Previosuly used axios for CRUD operations. Later found out traditional fetch was 2X time quicker Source: https://medium.com/@Krishnajlathi/axios-vs-fetch-4-fetch-api-tricks-that-made-my-front-end-2-faster-fc558d254dba
+- Previously used axios for CRUD operations. Later found out traditional fetch was 2X time quicker Source: https://medium.com/@Krishnajlathi/axios-vs-fetch-4-fetch-api-tricks-that-made-my-front-end-2-faster-fc558d254dba
 - Uninstalled Axios. Changed all axios into javascript equivalent.
 
 **Challenge: Authentication Flow with Clerk**
