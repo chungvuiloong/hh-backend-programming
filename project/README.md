@@ -393,5 +393,5 @@ For issues or questions, please refer to the documentation:
 ## Acknowledgments
 
 Special thanks to our beta testers for their feedback and support:
-- @juk** jus**
-- @ma** os*** 
+- @Juk** Jus**
+- @Ma** Os*** 
