@@ -13,7 +13,35 @@ const FriendsList = ({ toggleModal, setFormData }: { toggleModal: (action?: 'add
         userId ? { userID: userId } : "skip"
     );
     
-    const deleteFriend = useMutation(api.friends.deleteFriend);
+    // const deleteFriend = useMutation(api.friends.deleteFriend);
+
+    async function deleteFriend(userID: string, id: string) {
+        const url = process.env.NODE_ENV === 'production' ? 'https://friend-list-d047c88faa49.herokuapp.com' : 'http://localhost:8080';
+
+        try {
+            const response = await fetch(`${url}/convex/delete/friend/${userID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Friend-ID': id
+                },
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
+                throw new Error(errorData.message || `Failed to delete friend: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('Friend deleted successfully:', result);
+            return result;
+        } catch (error) {
+            console.error('Error deleting friend:', error);
+            throw error;
+        }
+    }
+
+
     // const updateFriend = useMutation(api.friends.updateFriend);
 
     // const data = isConnected ? convexFriends : friends;

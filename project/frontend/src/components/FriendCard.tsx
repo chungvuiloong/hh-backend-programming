@@ -15,7 +15,7 @@ const InfoField = ({ icon, label, value }: { icon: string; label: string; value:
 interface FriendCardProps {
     friend: any;
     userId: string | null;
-    deleteFriend: (params: { userID: string; id: string }) => void;
+    deleteFriend: (userID: string, id: string) => Promise<any>;
     toggleModal: (action?: 'add' | 'edit') => void;
     setFormData: React.Dispatch<React.SetStateAction<FriendFormData>>;
 }
@@ -92,10 +92,11 @@ const FriendCard = ({ friend, userId, deleteFriend, toggleModal, setFormData }: 
                             return;
                         }
                         if (window.confirm(`Are you sure you want to delete ${friend?.fullname || 'this friend'}?`)) {
-                            deleteFriend({
-                                userID: userId,
-                                id: friend.id
-                            });
+                            try {
+                                await deleteFriend(userId, friend.id);
+                            } catch (error) {
+                                alert('Failed to delete friend. Please try again.');
+                            }
                         }
                     }}
                     className='w-1/2 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors'
