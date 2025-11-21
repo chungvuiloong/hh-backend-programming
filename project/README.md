@@ -359,6 +359,14 @@ const response = await fetch(`${url}/convex/update/friend/${userId}`,
 
 
 ### Backend
+**Challenge: Delete friend**
+- Unable to delete from backend. Used wrong header from frontend. 
+- Solution: The headers in backend @RequestHeader("Friend-ID") must have the same name as in frontend           
+    headers: {
+        'Content-Type': 'application/json',
+        'Friend-ID': id
+    },
+
 **Challenge: Backend Deployment for heroku**
 - Due to unique route in Github for this project (hh/project/backend), deploying was difficult and challenging. It cant be selected from the Heroku dashboard.
 - It has be manually setup from the backend folder using terminal with heroku. It was done more than 5 times before deployment via heroku worked.
